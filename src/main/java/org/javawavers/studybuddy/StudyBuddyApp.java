@@ -18,6 +18,7 @@ public class StudyBuddyApp extends Application {
     }
 
     public static void main(String[] args) {
-        launch();
+        DatabaseManager.CreateUserProfile();
+        launch(args);
     }
 }
