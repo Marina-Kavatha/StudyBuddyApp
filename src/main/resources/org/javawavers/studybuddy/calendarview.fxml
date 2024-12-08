@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.control.BottomNavigationButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="747.0" prefWidth="1115.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+
+    <left>
+        <VBox prefHeight="698.0" prefWidth="190.0" spacing="10" style="-fx-background-color: #CF7330; -fx-padding: 10;">
+            <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: white;" text="UserName" />
+            <Button style="-fx-background-color: transparent; -fx-text-fill: white;" text="Dashboard" />
+            <Button style="-fx-background-color: transparent; -fx-text-fill: white;" text="Calendar" />
+            <VBox spacing="5" style="-fx-padding: 10;">
+                <Label style="-fx-font-size: 14px; -fx-text-fill: white;" text="Courses" />
+                <Button style="-fx-background-color: transparent; -fx-text-fill: white;" text="Study" />
+                <Button style="-fx-background-color: transparent; -fx-text-fill: white;" text="Assignments" />
+            </VBox>
+        </VBox>
+    </left>
+   <center>
+<VBox prefHeight="747.0" prefWidth="1033.0" spacing="10" style="-fx-background-color: white; -fx-padding: 20;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+
+   <!-- Header Section for Calendar -->
+   <VBox alignment="center" spacing="5" style="-fx-padding: 10;" />
+         <Pane prefHeight="871.0" prefWidth="802.0">
+            <VBox.margin>
+               <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+            </VBox.margin>
+            <children>
+               <VBox layoutX="728.0" layoutY="-43.0" prefHeight="180.0" prefWidth="166.0" style="-fx-border-color: black; -fx-border-radius: 2; -fx-background-radius: 2;">
+                  <children>
+                     <Label prefHeight="44.0" prefWidth="169.0" style="-fx-background-color: #96E2D6; -fx-padding: 5; -fx-background-radius: 2;" text="          Upcoming Tasks" textAlignment="CENTER" textFill="#1e1d1d">
+                        <cursor>
+                           <Cursor fx:constant="DEFAULT" />
+                        </cursor>
+                     </Label>
+                  </children>
+               </VBox>
+      
+         <!-- Calendar Grid (11x7) -->
+         <GridPane alignment="center" gridLinesVisible="true" hgap="1.0" layoutX="129.0" layoutY="225.0" maxHeight="347.0" maxWidth="471.0" minHeight="347.0" minWidth="471.0" prefHeight="347.0" prefWidth="471.0" style="-fx-border-color: black; -fx-border-width: 2;" vgap="1.0">
+      
+            <!-- Days of the Week -->
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="Monday" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="Tuesday" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="Wednesday" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="Thursday" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="Friday" GridPane.columnIndex="4" GridPane.rowIndex="0" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="Saturday" GridPane.columnIndex="5" GridPane.rowIndex="0" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 0 2 0; -fx-alignment: center;" text="Sunday" GridPane.columnIndex="6" GridPane.rowIndex="0" />
+      
+            <Label prefHeight="29.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <Label prefHeight="29.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label prefHeight="29.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Label prefHeight="29.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Label prefHeight="29.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <Label prefHeight="29.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+            <Label prefHeight="29.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 0 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+            
+            <Label prefHeight="29.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <Label prefHeight="29.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label prefHeight="29.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Label prefHeight="29.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Label prefHeight="29.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <Label prefHeight="29.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+            <Label prefHeight="29.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 0 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+            
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 0 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+         
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 0 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+            
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 0 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="6" GridPane.rowIndex="5" />
+            
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="5" GridPane.rowIndex="6" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 0 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="6" GridPane.rowIndex="6" />
+         
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="4" GridPane.rowIndex="7" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="5" GridPane.rowIndex="7" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 0 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="6" GridPane.rowIndex="7" />
+            
+            <Label prefHeight="29.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="0" GridPane.rowIndex="8" />
+            <Label prefHeight="29.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <Label prefHeight="29.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+            <Label prefHeight="29.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="3" GridPane.rowIndex="8" />
+            <Label prefHeight="29.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="4" GridPane.rowIndex="8" />
+            <Label prefHeight="29.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="5" GridPane.rowIndex="8" />
+            <Label prefHeight="29.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 0 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="6" GridPane.rowIndex="8" />
+            
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="0" GridPane.rowIndex="9" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="2" GridPane.rowIndex="9" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="3" GridPane.rowIndex="9" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="4" GridPane.rowIndex="9" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="5" GridPane.rowIndex="9" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 0 2 0; -fx-alignment: center;" text="" GridPane.columnIndex="6" GridPane.rowIndex="9" />
+            
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 0 0; -fx-alignment: center;" text="" GridPane.columnIndex="0" GridPane.rowIndex="10" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 0 0; -fx-alignment: center;" text="" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 0 0; -fx-alignment: center;" text="" GridPane.columnIndex="2" GridPane.rowIndex="10" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 0 0; -fx-alignment: center;" text="" GridPane.columnIndex="3" GridPane.rowIndex="10" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 0 0; -fx-alignment: center;" text="" GridPane.columnIndex="4" GridPane.rowIndex="10" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 2 0 0; -fx-alignment: center;" text="" GridPane.columnIndex="5" GridPane.rowIndex="10" />
+            <Label prefHeight="40.0" prefWidth="67.0" style="-fx-font-weight: bold; -fx-border-color: gray; -fx-border-width: 0 0 0 0; -fx-alignment: center;" text="" GridPane.columnIndex="6" GridPane.rowIndex="10" />
+      
+      
+      
+            <columnConstraints>
+               <ColumnConstraints maxWidth="65.0" minWidth="29.0" prefWidth="66.0" />
+               <ColumnConstraints maxWidth="65.0" minWidth="29.0" prefWidth="66.0" />
+               <ColumnConstraints />
+               <ColumnConstraints />
+               <ColumnConstraints />
+               <ColumnConstraints />
+               <ColumnConstraints />
+            </columnConstraints>
+            <rowConstraints>
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="31.0" />
+               <RowConstraints maxHeight="29.0" minHeight="10.0" prefHeight="27.0" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" />
+               <RowConstraints />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" />
+            </rowConstraints>
+            <padding>
+               <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+            </padding>
+      
+         <!-- Continue for Rows 4-11 with the same pattern -->
+      
+         </GridPane>
+         <Label layoutX="303.0" layoutY="185.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="3 - 9 Oct 2025" />
+               <VBox layoutX="726.0" layoutY="332.0" prefHeight="180.0" prefWidth="166.0" style="-fx-border-color: black; -fx-border-radius: 2; -fx-background-radius: 2;">
+                  <children>
+                     <Label prefHeight="44.0" prefWidth="169.0" style="-fx-background-color: #06B812; -fx-padding: 5px; -fx-background-radius: 2;" text="         Completed Tasks" textAlignment="CENTER" textFill="#1e1d1d">
+                        <cursor>
+                           <Cursor fx:constant="DEFAULT" />
+                        </cursor>
+                     </Label>
+                  </children>
+               </VBox>
+               <VBox layoutX="725.0" layoutY="518.0" prefHeight="180.0" prefWidth="166.0" style="-fx-border-color: black; -fx-border-radius: 2; -fx-background-radius: 2;">
+                  <children>
+                     <Label prefHeight="44.0" prefWidth="169.0" style="-fx-background-color: FFC23D; -fx-background-radius: 2;" text="         In Progress Tasks" textAlignment="CENTER" textFill="#1e1d1d">
+                        <cursor>
+                           <Cursor fx:constant="DEFAULT" />
+                        </cursor>
+                     </Label>
+                  </children>
+               </VBox>
+               <VBox layoutX="729.0" layoutY="144.0" prefHeight="180.0" prefWidth="166.0" style="-fx-border-color: black; -fx-border-radius: 2; -fx-background-radius: 2;">
+                  <children>
+                     <Label prefHeight="44.0" prefWidth="169.0" style="-fx-background-color: #FE1A12; -fx-background-radius: 2;" text="                Late Task" textFill="#1e1d1d">
+                        <cursor>
+                           <Cursor fx:constant="DEFAULT" />
+                        </cursor>
+                     </Label>
+                  </children>
+               </VBox>
+               <BottomNavigationButton layoutX="272.0" layoutY="185.0" text="&lt;" />
+               <BottomNavigationButton layoutX="417.0" layoutY="185.0" text="&gt;" />
+               <Pane layoutX="111.0" layoutY="66.0" prefHeight="103.0" prefWidth="115.0" style="-fx-background-radius: 15px; -fx-border-radius: 15px; -fx-border-color: black; -fx-border-width: 2px; -fx-background-color: #96E2D6;">
+                  <children>
+                     <Label layoutX="8.0" layoutY="14.0" text="Upcoming Tasks">
+                        <font>
+                           <Font name="System Bold" size="13.0" />
+                        </font>
+                     </Label>
+                     <Label layoutX="21.0" layoutY="57.0" prefHeight="35.0" prefWidth="38.0" text="15">
+                        <font>
+                           <Font name="System Bold" size="24.0" />
+                        </font>
+                     </Label>
+                  </children>
+               </Pane>
+               <Pane layoutX="393.0" layoutY="47.0" prefHeight="125.0" prefWidth="123.0">
+                  <children>
+                     <Pane layoutX="-25.0" layoutY="22.0" prefHeight="103.0" prefWidth="115.0" style="-fx-background-radius: 15px; -fx-border-radius: 15px; -fx-border-color: black; -fx-border-width: 2px; -fx-background-color: #E53B36;">
+                        <children>
+                           <Label layoutX="30.0" layoutY="14.0" text="Late Task">
+                              <font>
+                                 <Font name="System Bold" size="13.0" />
+                              </font>
+                           </Label>
+                           <Label layoutX="23.0" layoutY="63.0" prefHeight="35.0" prefWidth="38.0" text="5">
+                              <font>
+                                 <Font name="System Bold" size="24.0" />
+                              </font>
+                           </Label>
+                        </children>
+                     </Pane>
+                  </children>
+               </Pane>
+               <Pane layoutX="239.0" layoutY="66.0" prefHeight="103.0" prefWidth="115.0" style="-fx-background-radius: 15px; -fx-border-radius: 15px; -fx-border-color: black; -fx-border-width: 2px; -fx-background-color: #FFC23D;">
+                  <children>
+                     <Label layoutX="25.0" layoutY="13.0" text="In Progress">
+                        <font>
+                           <Font name="System Bold" size="13.0" />
+                        </font>
+                     </Label>
+                     <Label layoutX="42.0" layoutY="33.0" text="Tasks">
+                        <font>
+                           <Font name="System Bold" size="13.0" />
+                        </font>
+                     </Label>
+                     <Label layoutX="21.0" layoutY="58.0" prefHeight="38.0" prefWidth="42.0" text="3">
+                        <font>
+                           <Font name="System Bold" size="24.0" />
+                        </font>
+                     </Label>
+                  </children>
+               </Pane>
+               <Pane layoutX="497.0" layoutY="69.0" prefHeight="103.0" prefWidth="115.0" style="-fx-background-radius: 15px; -fx-border-radius: 15px; -fx-border-color: black; -fx-border-width: 2px; -fx-background-color: #15B569;">
+                  <children>
+                     <Label layoutX="6.0" layoutY="14.0" text="Completed Tasks">
+                        <font>
+                           <Font name="System Bold" size="13.0" />
+                        </font>
+                     </Label>
+                     <Label layoutX="14.0" layoutY="63.0" prefHeight="35.0" prefWidth="38.0" text="28">
+                        <font>
+                           <Font name="System Bold" size="24.0" />
+                        </font>
+                     </Label>
+                  </children>
+               </Pane>
+               <ButtonBar layoutX="429.0" layoutY="-20.0" prefHeight="40.0" prefWidth="200.0">
+                  <buttons>
+                   <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="158.0" style="-fx-background-color: #CF308C; -fx-background-radius: 30px; -fx-border-color: black; -fx-border-radius: 30px;" text="Διαθεσιμότητα">
+                        <font>
+                           <Font name="System Bold" size="14.0" />
+                        </font>
+                     </Button>
+                  </buttons>
+               </ButtonBar>
+               <Button layoutX="129.0" layoutY="185.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="68.0" style="-fx-background-color: #CF308C; -fx-background-radius: 30px; -fx-border-color: black; -fx-border-radius: 30px;" text="Today">
+                  <font>
+                     <Font name="System Bold" size="14.0" />
+                  </font>
+               </Button>
+            </children>
+         </Pane>
+         <VBox prefHeight="209.0" prefWidth="164.0" />
+
+</VBox>
+</center>
+<right>
+
+</right>
+</BorderPane>
