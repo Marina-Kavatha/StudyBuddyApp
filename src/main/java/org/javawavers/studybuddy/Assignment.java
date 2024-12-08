@@ -6,7 +6,14 @@ import java.util.ArrayList;
 
 
     public class Assignment {
+        private String title;
+        private long due;
+        private LocalDate deadline;
+        private int estimateHours;
+        private String description;
 
+
+/* 
         //θεωρω πως εχουμε παρει απο την βαση δεδομενων ειτε απο την μνημη της εφαρμογης : μια λιστα με τις εργασιες που εχει ο χρηστης , μια λιστα με τα deadllines της καθε εργασιας και την εκφωνηση της ασκησης
         
             ListAssignment listassignment = new ListAssignment();
@@ -16,33 +23,44 @@ import java.util.ArrayList;
         //λιστα για της εκφωνησης 
             ArrayList<ArrayList<String>> description = listassignment.getDescription();
             ArrayList<ArrayList<Integer>> remaingdays = new ArrayList<>(); //δημιουργια νεας λιστας η οποια θα εχει τις μερες που απομενουν μεσα
-        //παιρνουμε την σημερινη ημερα 
-            LocalDate today = LocalDate.now();
-                public void getRemainingHours(LocalDate today) { //μεθοδος υπολογισμου ποσες μερες μενουν ακομα για την ληξη της προθεσμιας
-                    for (int i = 0; i < deadline.size(); i++) {
-                        ArrayList<Integer> subjectremainingdays = new ArrayList<>();//δημιουργια λιστας για να περνουμε σε καθε γραμμη της προθεσμιες του συγκεκριμενου μαθηματος και να το προστεθουμε αργοτερα στην λιστα
-                    
-                        for (int j = 0; j < deadline.get(i).size(); j++) {
-                            LocalDate duedate = deadline.get(i).get(j);//παιρνει την συδκεκριμενη ημερομηνια του deadline
-                            long daysremaining = ChronoUnit.DAYS.between(today,duedate );//με αυτην την εντολη η βιβλιοθηκη chronounit επιστρεφει τις μερες που εχουν διαφορα δυο ημερομηνιες
-                            subjectremainingdays.add((int) daysremaining);//το προσθετουμε στο μαθημα
-                        }
-                        remaingdays.add(subjectremainingdays);//προστεθουμε την γραμμη
-                    }
+        //παιρνουμε την σημερινη ημερα */
+
         
+
+
+        public Assignment(String title, long due, LocalDate deadline, int estimateHours, String description) {
+            this.title = title;
+            this.due = getRemainingDays(today, deadline);
+            this.deadline = deadline;
+            this.estimateHours = calculateEstHours();
+            this.description = description;
+        }
         
+
+
+        LocalDate today = LocalDate.now();
         
-                }
+
+
+        public long getRemainingDays(LocalDate today, LocalDate deadline) { //μεθοδος υπολογισμου ποσες μερες μενουν ακομα για την ληξη της προθεσμιας
+
+            long daysremaining = ChronoUnit.DAYS.between(today, deadline);//με αυτην την εντολη η βιβλιοθηκη chronounit επιστρεφει τις μερες που εχουν διαφορα δυο ημερομηνιες
+            return daysremaining;
+    
+        }
+
+            
+                
         //μεθοδος υπολογισμου αν για καποια εργασια σε συγκεκριμενο μαθημα ειναι κοντα στην προθεσμαι (δηλαδη λιγοτερο απο 10 μερες) 
-                public boolean isDuesoon(int subjecttt, int Assignmenttt) {
-                    int dueDate = remaingdays.get(subjecttt).get(Assignmenttt);
-                    if (dueDate > 10) {
+                public boolean isDuesoon() {
+                    if (getRemainingDays(today, deadline) > 10) {
                         return false;
                     } else {
                         return true;
                     }
-        
                 }
+
+
         //δημιουργια λιστων με λεξεις κλειδια για τον υπολογισμο της δυσκολιας της καθε εργασιας αναλογα με την εκφωνηση και το επιπεδο δυσκολιας
                 public static final ArrayList<String> keywords1 = new ArrayList<>() {{
                     add("x");
@@ -83,6 +101,20 @@ import java.util.ArrayList;
                             count3++;
                         }
                     }
+//Μια if η οποια ελενχει αν η εκφωνση περιεχει ενα αριθμο και αμεσως μετα την λεξη : λεξεις ετσι ωστε αν συμβαινει αυτο τοτε να αποθηκευεται ο αριθμος τον λεξεων που χρειαζετι να γραφτουν                    
+                    int i = 0;
+                    for (String word : words) {
+                        
+                        if (words[i + 1].equals("λέξεις")) {
+                            try {
+                                double number = Double.parseDouble(word);
+                                double Text = Double.parseDouble(word);
+                            } catch (NumberFormatException e) {
+                            }
+                        } else {
+                            i++;
+                        }
+                    }
         //μετραμε το score της συγκεκριμενης εκφωνησης
                     double difficulty = count1 * 0.2 + count2 * 0.3 * count3 * 0.5;
         //μετραμε την συνολικη μεγιστη βαθμολογια δυσκολιας που μπορει να παρει καποιος 
@@ -95,8 +127,42 @@ import java.util.ArrayList;
                     return finascore;
                 }
         
-            
+        
                 
+        private int calculateEstHours() {
+            double difficulty = difficultyestmator(description);
+            //θελουμε μια κλιμακα που να επιστρεφει ωρες αναλογα με την εργασια 
+            return 2;
+        }
+
+//gettersss
+    public String getTitle() {
+        return title;
+    }
+
+    public long getDue() {
+        return  due;
+    }
+
+    public LocalDate getDeadline() {
+        return deadline;
+    }
+
+    public int getEstimateHours() {
+        return estimateHours;
+    }
+
+    public String getDescription() {
+        return description;
+    }
                 
+/*Δεν νομιζω πως ειναι εφικτο να προσδιορισουμε ακριβως της ωρες που χρειαζεται ενα μαθημα αναλογα με τις λεξεις κλειδια στην εκφωνηση,για αυτο θα μπορουσαμε να 
+εμφανιζαμε ενα pop up στον χρηστη οταν ολοκληρωση την προσθηκη μιας εργασιας στο οποιο θα απανταγε σε αυτες τις ερωτησεις
+Επιπεδο πολυπλοκοτητας : {εισαγωγικο επιπεδο , Μετριας δυσκολιας, Πολυδιαστατη εργασια} 
+Τυπος εργασιας: {θεωριτικη, ερευνητικη, πρακτικη, συνδυαστικη}
+Κλιμακα εργασιας : {μεγαλη,μεσαια, μικρη}
+Μεθοδος εργασιας: {ατομικη, ομαδικη, πρακτικη }
+Τομεασ σπουδων: {Πληροφορικη, οικονομικα, λογιστικη κ.α}
+*/
         
     }  
