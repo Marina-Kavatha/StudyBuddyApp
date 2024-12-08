@@ -7,11 +7,11 @@ import java.util.ArrayList;
 
     public class Assignment {
         private String title;
-        private long due;
+        private long remaingdays;
         private LocalDate deadline;
         private int estimateHours;
         private String description;
-
+        private LocalDate completeddDate;
 
 /* 
         //θεωρω πως εχουμε παρει απο την βαση δεδομενων ειτε απο την μνημη της εφαρμογης : μια λιστα με τις εργασιες που εχει ο χρηστης , μια λιστα με τα deadllines της καθε εργασιας και την εκφωνηση της ασκησης
@@ -25,15 +25,20 @@ import java.util.ArrayList;
             ArrayList<ArrayList<Integer>> remaingdays = new ArrayList<>(); //δημιουργια νεας λιστας η οποια θα εχει τις μερες που απομενουν μεσα
         //παιρνουμε την σημερινη ημερα */
 
-        
+//κατασκευαστης χωρις παραμετρους
+        public Assignment() {
+            this.completeddDate = null;
 
+        }
 
-        public Assignment(String title, long due, LocalDate deadline, int estimateHours, String description) {
+//κατασκευαστης με παραμετρους
+        public Assignment(String title, long remaingdays, LocalDate deadline, int estimateHours, String description, LocalDate completeDate) {
             this.title = title;
-            this.due = getRemainingDays(today, deadline);
+            this.remaingdays = getRemainingDays(today, deadline);
             this.deadline = deadline;
             this.estimateHours = calculateEstHours();
             this.description = description;
+            this.completeddDate = completeDate;
         }
         
 
@@ -140,8 +145,8 @@ import java.util.ArrayList;
         return title;
     }
 
-    public long getDue() {
-        return  due;
+    public LocalDate getCompletedDate() {
+        return completeddDate;
     }
 
     public LocalDate getDeadline() {
@@ -154,6 +159,27 @@ import java.util.ArrayList;
 
     public String getDescription() {
         return description;
+    }
+
+//setterrss
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setCompletedDate() {
+        this.completeddDate = completeddDate;
+    }
+
+    public void setDeadline() {
+        this.deadline = deadline;
+    }
+
+    public void setEstimateHours() {
+        this.estimateHours = estimateHours;
+    }
+
+    public void setDescription() {
+        this.description = description;
     }
                 
 /*Δεν νομιζω πως ειναι εφικτο να προσδιορισουμε ακριβως της ωρες που χρειαζεται ενα μαθημα αναλογα με τις λεξεις κλειδια στην εκφωνηση,για αυτο θα μπορουσαμε να 
