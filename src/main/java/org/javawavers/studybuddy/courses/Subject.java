@@ -18,8 +18,8 @@ public class Subject {
     private int difficultyLevel; // Επίπεδο δυσκολίας
     private SubjectType subjectType; // Τύπος μαθήματος
     private StudyGoal studyGoal; // Στόχος μελέτης
-    private final List<Exam> exams = new ArrayList<>(); // Λίστα εξετάσεων
-    private final List<Assignment> assignments = new ArrayList<>(); // Λίστα εργασιών
+    private List<Exam> exams = new ArrayList<>(); // Λίστα εξετάσεων
+    private List<Assignment> assignments = new ArrayList<>(); // Λίστα εργασιών
 
     // Getters και Setters
     public String getCourseName() {
