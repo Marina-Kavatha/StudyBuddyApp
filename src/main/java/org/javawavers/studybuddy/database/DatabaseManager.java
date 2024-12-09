@@ -1,4 +1,4 @@
-package org.javawavers.studybuddy;
+package org.javawavers.studybuddy.database;
 
 
 import java.sql.Connection;

@@ -1,5 +1,4 @@
-package org.javawavers.studybuddy;
-
+package org.javawavers.studybuddy.calculations;
 
 
 //κλαση SimulateAnnealing

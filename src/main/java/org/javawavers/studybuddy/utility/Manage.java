@@ -1,4 +1,4 @@
-package org.javawavers.studybuddy;
+package org.javawavers.studybuddy.utility;
 
 public class Manage {
      // Πεδίο τύπου που υποδεικνύει τον τύπο διαχείρισης (π.χ., Exam, User, Subject κ.α)

@@ -1,4 +1,4 @@
-package org.javawavers.studybuddy;
+package org.javawavers.studybuddy.utility;
 
 public class UserSettings {
     // Υπεύθυνη για τη διαχείριση των ρυθμίσεων χρήστη, όπως email, ειδοποιήσεις, προφίλ κ.α.

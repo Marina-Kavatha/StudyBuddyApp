@@ -1,4 +1,4 @@
-package org.javawavers.studybuddy;
+package org.javawavers.studybuddy.ui_ux;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

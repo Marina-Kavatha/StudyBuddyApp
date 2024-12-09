@@ -1,4 +1,4 @@
-package org.javawavers.studybuddy;
+package org.javawavers.studybuddy.calculations;
 import java.util.Random;
 
 
