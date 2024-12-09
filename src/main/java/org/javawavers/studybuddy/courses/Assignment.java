@@ -11,7 +11,7 @@ import java.util.ArrayList;
         private LocalDate deadline;
         private int estimateHours;
         private String description;
-        private LocalDate completeddDate;
+        private LocalDate completedDate;
 
 /* 
         //θεωρω πως εχουμε παρει απο την βαση δεδομενων ειτε απο την μνημη της εφαρμογης : μια λιστα με τις εργασιες που εχει ο χρηστης , μια λιστα με τα deadllines της καθε εργασιας και την εκφωνηση της ασκησης
