@@ -1,7 +1,7 @@
 package org.javawavers.studybuddy.calculations;
 
 
-//κλαση SimulateAnnealing
+//κλαση SimulateAnnealingScoring
 public class SimulateAnnealing {
 
     private static final double tempreture = 100; // αρχικοποιουμε την μεταβλητη tempreture = 100 ωστε ο αλγοριθμος να ελενξει αρκετες λυσεις
