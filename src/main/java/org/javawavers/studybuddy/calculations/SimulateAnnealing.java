@@ -10,9 +10,7 @@
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class SimulateAnnealing {
     /*
@@ -24,7 +22,7 @@ public class SimulateAnnealing {
      */
 
     private List<SubjectTest> subjects; // List for subjects
-    private List<Task> tasks; // List for each task that is connected with a subject
+    private static List<Task> tasks; // List for each task that is connected with a subject
 
     public SimulateAnnealing() {
         this.subjects = new ArrayList<>();
@@ -65,73 +63,97 @@ public class SimulateAnnealing {
     }
 
     private static double bestscoring = 0.0;
-    private static List<Task> besttask = new ArrayList<>();;
+    private static List<Task> besttask = new ArrayList<>();
+    private static int[][] schedule;
 
     // Κατανομή tasks στο πρόγραμμα
-    public static List<Task> SchedulResult(List<Task> tasks) {
+    public static void SchedulResult() {
         /*
          * each time the method is called in order to produce the best result
          * the best scoring is set as zero and the list with the best distribution,
          * shuffles an arrey so that the order of the table elements
          * differents from the one that is given
-         * The procidure is done 10 times in order to produce 10 possible results
+         * The procidure is done 50 times in order to produce 10 possible results
          * Then each list gets a score. The list with the higher score is set as the
          * besttask
          */
         bestscoring = 0.0;
         besttask.clear();
-
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 50; i++) {
             double valresultscoring = 0.0;
-            Collections.shuffle(tasks); // Ανακάτεμα tasks για τυχαία κατανομή
-            // indicates the possision of the task taht is located in the tasks list
 
+            schedule = assignTask(tasks);
             // list scoring
-            valresultscoring = setScore(tasks);
-            bestschedule(valresultscoring, tasks);
+            valresultscoring = setScore(tasks, schedule);
+            bestschedule(valresultscoring, tasks, schedule);
         }
-        return besttask;
+        printSchedule();
 
     }
 
     // calls static method calculatescore
-    public static double setScore(List<Task> taskList) {
-        double score = 0.5;
-        return score;
+    public static double setScore(List<Task> taskList, int[][] sch) {
+        return Scoring.calculatescore(taskList, sch);
     }
 
-    public static void bestschedule(double valresultscoring, List<Task> taskList) {
+    public static void bestschedule(double valresultscoring, List<Task> taskList, int[][] sch) {
         if (valresultscoring > bestscoring) {
             bestscoring = valresultscoring;
             besttask = taskList;
+            schedule = sch;
         }
     }
 
-    // trial
+    public static int[][] assignTask(List<Task> tasks) {
+        Collections.shuffle(tasks);
+        /*
+         * The table valSchedule stors the index of the task Array list, after the
+         * tasks have been distributed into the available hours
+         */
+        int[][] valSchedule = new int[12][8];
+        // Index of the tasks Array List
+        int taskIndex = 0;
 
-    public static Map<Integer, List<Task>> assignTasks(List<Task> tasks) {
-        Map<Integer, List<Task>> schedule = new HashMap<>(); // Χάρτης: ημέρα -> λίστα tasks
-        for (int i = 1; i <= 7; i++) {
-            schedule.put(i, new ArrayList<>()); // Αρχικοποίηση για κάθε ημέρα
-        }
+        for (int day = 1; day <= 7; day++) { // for each day of the week
+            // available hours for the day
+            int remainingHours = Availability.getTotalAvailableHours(day);
 
-        for (Task task : tasks) {
-            boolean assigned = false;
-
-            for (int day = 1; day <= 7; day++) {
-                if (Availability.getTotalAvailableHours(day) >= 2 && Availability.availabilityLeft(day, 0) == 1) {
-                    schedule.get(day).add(task); // Ανάθεση task στην ημέρα
-                    Availability.availabilityLeft(day, 1); // Μείωση διαθέσιμων ωρών
-                    assigned = true;
+            for (int row = 0; row < 12; row++) { // Max 12 tasks per day
+                // the loop ends when every task is assigned to a day
+                if (taskIndex >= tasks.size()) {
+                    break;
+                }
+                if (remainingHours >= 2) { // each task requirs 2 hours
+                    // stor the task index (taskIndex +1 because we begin with 0)
+                    valSchedule[row][day] = taskIndex + 1;
+                    // The remaining hours is reduced by 2 hours
+                    remainingHours -= 2;
+                    taskIndex++;
+                } else {
+                    // if there are not enough available hours we continue to the next day
                     break;
                 }
             }
-
-            if (!assigned) {
-                System.out.println("Το task δεν μπορεί να ανατεθεί λόγω έλλειψης διαθεσιμότητας: " + task);
-            }
         }
-
-        return schedule;
+        // return the table with the valid result
+        return valSchedule;
     }
+
+    // The below method prints the schedule too the user
+    public static void printSchedule() {
+        System.out.println("Προτεινόμενο πρόγραμμα");
+        for (int i = 1; i < 8; i++) {
+            System.out.println("Μέρα:" + i);
+            for (int j = 0; j < 12; j++) {
+
+                if (schedule[j][i] > 0) {
+                    System.out.println(besttask.get(i));
+                } else {
+                    continue;
+                }
+            }
+
+        }
+    }
+
 }
