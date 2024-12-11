@@ -18,8 +18,8 @@ public class Subject {
     private int difficultyLevel; // Επίπεδο δυσκολίας
     private SubjectType subjectType; // Τύπος μαθήματος
     private StudyGoal studyGoal; // Στόχος μελέτης
-    private List<Exam> exams = new ArrayList<>(); // Λίστα εξετάσεων
-    private List<Assignment> assignments = new ArrayList<>(); // Λίστα εργασιών
+    private static List<Exam> exams = new ArrayList<>(); // Λίστα εξετάσεων
+    private static List<Assignment> assignments = new ArrayList<>(); // Λίστα εργασιών
 
     // Getters και Setters
     public String getCourseName() {
@@ -72,20 +72,20 @@ public class Subject {
     }
 
     // Μέθοδοι διαχείρισης εξετάσεων
-    public void addExam(Exam exam) { //προσθήκη εξεταστικής
+    public static void addExam(Exam exam) { //προσθήκη εξεταστικής
         exams.add(exam);
     }
 
-    public List<Exam> getExams() { //μέθοδος για ανάκτηση εξετάσεων
+    public static List<Exam> getExams() { //μέθοδος για ανάκτηση εξετάσεων
         return exams;
     }
 
     // Μέθοδοι διαχείρισης εργασιών
-    public void addAssignment(Assignment assignment) { //προσθήκη εργασίας
+    public static void addAssignment(Assignment assignment) { //προσθήκη εργασίας
         assignments.add(assignment);
     }
 
-    public List<Assignment> getAssignments() { //μέθοδος για ανάκτηση εργασιών
+    public static List<Assignment> getAssignments() { //μέθοδος για ανάκτηση εργασιών
         return assignments;
     }
 }
