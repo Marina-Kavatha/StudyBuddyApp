@@ -13,6 +13,7 @@ public class ScheduledTask {
     private LocalTime timeCompleted;
     private TaskStatus taskStatus;
     private LocalDate taskDate;
+    private String subjectName;
 
     // Enum for Task Status
     public enum TaskStatus {
@@ -23,18 +24,20 @@ public class ScheduledTask {
     }
 
     // Constructor
-    public ScheduledTask(String taskName, int hoursAllocated, TaskStatus taskStatus, LocalTime timeStarted, LocalTime timeCompleted, LocalDate taskDate) {
+    public ScheduledTask(String taskName, int hoursAllocated, TaskStatus taskStatus, LocalTime timeStarted,
+                         LocalTime timeCompleted, LocalDate taskDate, Subject subject) {
         this.taskName = taskName;
         this.hoursAllocated = hoursAllocated;
         this.taskStatus = taskStatus;
         this.timeStarted = timeStarted;
         this.timeCompleted = timeCompleted;
         this.taskDate = taskDate;
+        this.subjectName = subject.getCourseName();
     }
 
     // Constructor with default settings
-    public ScheduledTask(String taskName, int hoursAllocated, LocalDate taskDate) {
-        this(taskName,hoursAllocated,TaskStatus.UPCOMING,null,null,taskDate);
+    public ScheduledTask(String taskName, int hoursAllocated, LocalDate taskDate, Subject subject) {
+        this(taskName,hoursAllocated,TaskStatus.UPCOMING,null,null,taskDate, subject);
     }
 
 
@@ -89,6 +92,10 @@ public class ScheduledTask {
         this.taskDate = taskDate;
     }
 
+    public String getSubjectName() {
+        return subjectName;
+    }
+
     // Method to check if the task is complete, return true when task is completed
     public boolean isComplete() {
         return taskStatus == TaskStatus.COMPLETED;
@@ -120,6 +127,7 @@ public class ScheduledTask {
                 ", Ώρα Έναρξης=" + (timeStarted != null ? timeStarted.toString() : "δεν έχει οριστεί") +
                 ", Ώρα Ολοκλήρωσης=" + (timeCompleted != null ? timeCompleted.toString() : "δεν έχει οριστεί") +
                 ", Κατάσταση Εργασίας=" + taskStatus +
+                ", Αφορά το μάθημα=" + subjectName +
                 '}';
     }
 }
