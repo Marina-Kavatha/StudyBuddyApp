@@ -1,4 +1,4 @@
-
+package org.javawavers.studybuddy.calculations;
 /*This class is responsible for calculating and dividing the total studying
  * time into groups (referred also as tasks) equally for each week till the
  * due day

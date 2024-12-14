@@ -3,7 +3,7 @@ module org.javawavers.studybuddy {
     requires javafx.fxml;
 
     requires org.controlsfx.controls;
-    requires java.sql;
+    requires org.xerial.sqlitejdbc;
 
     opens org.javawavers.studybuddy to javafx.fxml;
     exports org.javawavers.studybuddy;

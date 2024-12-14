@@ -1,3 +1,5 @@
+package org.javawavers.studybuddy.calculations;
+
 import java.util.Random;
 
 //Simulates the time needed to complete an assignment

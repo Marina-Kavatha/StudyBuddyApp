@@ -1,3 +1,5 @@
+package org.javawavers.studybuddy.calculations;
+
 import java.util.Random;
 
 /*Providing a random number that represents the total hours required for revision

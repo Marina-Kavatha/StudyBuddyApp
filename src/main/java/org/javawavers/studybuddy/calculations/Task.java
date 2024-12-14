@@ -1,3 +1,5 @@
+package org.javawavers.studybuddy.calculations;
+
 public class Task {
     private SubjectTest subject;
     private int taskType; // 1: διάβασμα, 2: επανάληψη, 3: εργασία
