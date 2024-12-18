@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="747.0" prefWidth="1115.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="747.0" prefWidth="1115.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml" fx:controller="org.javawavers.studybuddy.ui_ux.CalendarviewController">
 
     <left>
         <VBox prefHeight="747.0" prefWidth="169.0" spacing="10" style="-fx-background-color: #CF7330; -fx-padding: 10;">
@@ -258,7 +258,7 @@
                    <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
                  </rowConstraints>
                </GridPane>
-             <Button fx:id="popupbutton1" layoutX="571.0" layoutY="113.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="23.0" prefWidth="158.0" style="-fx-background-color: #CF308C; -fx-background-radius: 30px; -fx-border-color: black; -fx-border-radius: 30px;" text="Διαθεσιμότητα">
+             <Button fx:id="myButton" layoutX="571.0" layoutY="113.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="23.0" prefWidth="158.0" style="-fx-background-color: #CF308C; -fx-background-radius: 30px; -fx-border-color: black; -fx-border-radius: 30px;" text="Διαθεσιμότητα">
                   <font>
                      <Font name="System Bold" size="14.0" />
                   </font>
