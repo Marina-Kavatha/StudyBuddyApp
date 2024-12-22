@@ -1,14 +1,23 @@
 package org.javawavers.studybuddy;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.util.converter.IntegerStringConverter;
 
 public class Popupdia extends Application {
+    private final Map<String, Integer> availabilityMap = new HashMap<>();
+
+
 
     @Override
     public void start(Stage primaryStage) {
@@ -30,6 +39,8 @@ public class Popupdia extends Application {
         label2.setStyle("-fx-background-color: #50D1C6;");
         label2.setFont(new Font("System Bold", 14));
 
+        
+//δημιουργια labels για τις ημερες
         Label monday = createDayLabel("Δευτέρα", 92);
         Label tuesday = createDayLabel("Τρίτη", 134);
         Label wednesday = createDayLabel("Τετάρτη", 176);
@@ -37,7 +48,7 @@ public class Popupdia extends Application {
         Label friday = createDayLabel("Παρασκευή", 263);
         Label saturday = createDayLabel("Σάββατο", 305);
         Label sunday = createDayLabel("Κυριακή", 352);
-
+//δημιοργια text fields για τις ημερες
         TextField mondayField = createTextField(92);
         TextField tuesdayField = createTextField(134);
         TextField wednesdayField = createTextField(176);
@@ -49,6 +60,34 @@ public class Popupdia extends Application {
         TextField specificDayField = new TextField();
         specificDayField.setLayoutX(242);
         specificDayField.setLayoutY(98);
+        
+        //προσθηκη κουμπιου (οκ) για να κλεινει το παραθυρο
+        Button okButton = new Button("OK");
+        okButton.setStyle("-fx-background-color: #50D1C6; -fx-background-radius: 30px; -fx-text-fill: white; -fx-font-size: 14px;");
+        okButton.setLayoutX(285);
+        okButton.setLayoutY(400);
+        okButton.setPrefSize(70, 25);
+        root.getChildren().add(okButton);
+
+        okButton.setOnAction(event -> {
+//αποθηκευση τιμων που εισαγει ο χρηστης
+            availabilityMap.put("Δευτέρα", parseTextFieldValue(mondayField));
+            availabilityMap.put("Τρίτη", parseTextFieldValue(tuesdayField));
+            availabilityMap.put("Τετάρτη", parseTextFieldValue(wednesdayField));
+            availabilityMap.put("Πέμπτη", parseTextFieldValue(thursdayField));
+            availabilityMap.put("Παρασκευή", parseTextFieldValue(fridayField));
+            availabilityMap.put("Σάββατο", parseTextFieldValue(saturdayField));
+            availabilityMap.put("Κυριακή", parseTextFieldValue(sundayField));
+            availabilityMap.put("Συγκεκριμένη Ημέρα", parseTextFieldValue(specificDayField));
+
+//τιμη null
+            availabilityMap.forEach((day, value) -> {
+                System.out.println(day + ": " + (value != null ? value : "null"));
+            });
+
+// Κλεισιμο παραθυρου
+            primaryStage.close();
+        });
 
         root.getChildren().addAll(label1, label2, monday, tuesday, wednesday, thursday, friday, saturday, sunday,
                 mondayField, tuesdayField, wednesdayField, thursdayField, fridayField, saturdayField, sundayField,
@@ -77,8 +116,22 @@ public class Popupdia extends Application {
         textField.setLayoutY(layoutY);
         textField.setPrefSize(94, 36);
         textField.setStyle("-fx-background-radius: 20px;");
+//περιορισμος εισαγωγης μονο αριθμων 
+        textField.setTextFormatter(new TextFormatter<>(new IntegerStringConverter(), null, change -> {
+            if (change.getControlNewText().matches("\\d*")) {
+                return change;
+            }
+            return null;
+        }));
+
         return textField;
+    
     }
+    private Integer parseTextFieldValue(TextField textField) {
+        String text = textField.getText();
+        return text.isEmpty() ? null : Integer.parseInt(text);
+    }
+    
 
     public static void main(String[] args) {
         launch(args);

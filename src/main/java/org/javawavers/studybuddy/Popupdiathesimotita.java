@@ -2,6 +2,7 @@ package org.javawavers.studybuddy;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -10,6 +11,8 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class Popupdiathesimotita extends Application {
+
+    public static boolean isFinishedChecked = false;
 
     @Override
     public void start(Stage primaryStage) {
@@ -67,14 +70,14 @@ public class Popupdiathesimotita extends Application {
         CheckBox finishedCheckBox = new CheckBox("Finished");
         finishedCheckBox.setFont(Font.font("System Bold", 14));
         finishedCheckBox.setLayoutX(26);
-        finishedCheckBox.setLayoutY(227);
+        finishedCheckBox.setLayoutY(218);
         finishedCheckBox.setStyle("-fx-background-color: #15B569; -fx-background-radius: 20px;");
         root.getChildren().add(finishedCheckBox);
 
         Pane inPane = new Pane();
         inPane.setStyle("-fx-background-radius: 30px; -fx-background-color: #FFC23D;");
         inPane.setLayoutX(129);
-        inPane.setLayoutY(227);
+        inPane.setLayoutY(218);
         inPane.setPrefSize(98, 30);
 
         Label inLabel = new Label("In : (minutes)");
@@ -84,6 +87,22 @@ public class Popupdiathesimotita extends Application {
 
         inPane.getChildren().add(inLabel);
         root.getChildren().add(inPane);
+
+//προσθηκη κουμπιου (οκ) για να κλεινει το παραθυρο
+        Button okButton = new Button("OK");
+        okButton.setStyle("-fx-background-color: #CF308C; -fx-background-radius: 30px; -fx-text-fill: white; -fx-font-size: 14px;");
+        okButton.setLayoutX(80);
+        okButton.setLayoutY(248);
+        okButton.setPrefSize(70, 25);
+        root.getChildren().add(okButton);
+
+        okButton.setOnAction(event ->  {
+//την στιγμη που πατιετε το κουμπι οκ αποθηκευετε στην μεταβλητη isFinishedChecked αν εκεινη την στιγμη ειχε επιλεχθει το finish box η οχι
+            isFinishedChecked = finishedCheckBox.isSelected();
+            primaryStage.close();
+        });
+
+
 
         Scene scene = new Scene(root);
         primaryStage.setTitle("Task Layout");
