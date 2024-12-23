@@ -20,9 +20,9 @@ public class Scoring {
         // set the score at 5.0. The higher that can possibly be achieved
         double score = 5.0;
         // creating a list that should contain each subject only once
-        List<SubjectTest> uniqueS = new ArrayList<>();
+        List<Subject> uniqueS = new ArrayList<>();
         for (Task task : taskList) {
-            SubjectTest subject = task.getSubject();
+            Subject subject = task.getSubject();
             if (!uniqueS.contains(subject)) {
                 uniqueS.add(subject); // Προσθήκη του μαθήματος αν δεν υπάρχει ήδη
             }
@@ -34,17 +34,19 @@ public class Scoring {
 
             // for each individual subject
             for (int index = 0; index < uniqueS.size(); index++) {
-                SubjectTest usubject = uniqueS.get(index);
+                Subject usubject = uniqueS.get(index);
+
                 // we check if there is also a same task
                 for (int row = 0; row < 12; row++) {
                     if (sch[row][day] != 0 && sch[row][day] < taskList.size()) {
+
                         Task t = taskList.get(sch[row][day]);
 
                         /*
                          * checks if the subject from the subject list is the same as
                          * the one from the task list
                          */
-                        if (usubject.getName() == t.getSubject().getName()) {
+                        if (usubject.getCourseName().equals(t.getSubject().getCourseName())) {
                             score -= 0.2;
                         }
 
