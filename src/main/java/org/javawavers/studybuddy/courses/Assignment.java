@@ -31,9 +31,6 @@ import java.time.temporal.ChronoUnit;
 
 
         
-        
-
-
         public long getRemainingDays( LocalDate deadline) { //μεθοδος υπολογισμου ποσες μερες μενουν ακομα για την ληξη της προθεσμιας
             LocalDate today = LocalDate.now();
             long daysremaining = ChronoUnit.DAYS.between(today, deadline);//με αυτην την εντολη η βιβλιοθηκη chronounit επιστρεφει τις μερες που εχουν διαφορα δυο ημερομηνιες
