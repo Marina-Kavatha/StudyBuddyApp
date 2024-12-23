@@ -127,6 +127,4 @@ public class ProgressCalculator {
 
 
 
-
-//καποιες απο τις αρχικες μεταβλητες δεν χρειαζονται
  

@@ -13,18 +13,6 @@ import java.util.ArrayList;
         private String description;
         private LocalDate completeddDate;
 
-/* 
-        //θεωρω πως εχουμε παρει απο την βαση δεδομενων ειτε απο την μνημη της εφαρμογης : μια λιστα με τις εργασιες που εχει ο χρηστης , μια λιστα με τα deadllines της καθε εργασιας και την εκφωνηση της ασκησης
-        
-            ListAssignment listassignment = new ListAssignment();
-        //περνουμε απο την κλαση listAssignment τις λιστες για τις προθεσμιες και για τα μαθηατα και τις εργασιες . στην πραγματικοτητα αυτη η κλαση θα ειναι η σελιδα που θα εισαγει ο χρηστης τα μαθηματα
-            ArrayList<ArrayList<String>> assigment = listassignment.getAssigments();
-            ArrayList<ArrayList<LocalDate>> deadline = listassignment.getDeadline();
-        //λιστα για της εκφωνησης 
-            ArrayList<ArrayList<String>> description = listassignment.getDescription();
-            ArrayList<ArrayList<Integer>> remaingdays = new ArrayList<>(); //δημιουργια νεας λιστας η οποια θα εχει τις μερες που απομενουν μεσα
-        //παιρνουμε την σημερινη ημερα */
-
 //κατασκευαστης χωρις παραμετρους
         public Assignment() {
             this.completeddDate = null;
