@@ -86,6 +86,7 @@ public class Exam extends SubjectElement {
                     .append("'");
         }
 
+
         if(revisionPerXPages != 0) {
             builder.append("\nΕπανάληψη ανά: '")
                     .append(revisionPerXPages)

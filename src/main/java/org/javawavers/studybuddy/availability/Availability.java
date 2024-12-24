@@ -1,3 +1,5 @@
+package org.javawavers.studybuddy.availability;
+
 import java.time.LocalDate;
 import java.util.LinkedList;
 

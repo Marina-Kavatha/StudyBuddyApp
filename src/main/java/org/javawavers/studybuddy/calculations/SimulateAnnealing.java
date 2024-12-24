@@ -8,6 +8,8 @@ package org.javawavers.studybuddy.calculations;/*
  * and is given to the user as a recommended studying schedule.
  */
 
+import org.javawavers.studybuddy.availability.Availability;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -107,7 +109,7 @@ public class SimulateAnnealing {
     public static int[][] assignTask(List<Task> tasks) {
         Collections.shuffle(tasks);
         /*
-         * The table valSchedule stors the index of the task Array list, after the
+         * The table valSchedule stores the index of the task Array list, after the
          * tasks have been distributed into the available hours
          */
         int[][] valSchedule = new int[12][8];
@@ -123,7 +125,7 @@ public class SimulateAnnealing {
                 if (taskIndex >= tasks.size()) {
                     break;
                 }
-                if (remainingHours >= 2) { // each task requirs 2 hours
+                if (remainingHours >= 2) { // each task requires 2 hours
                     // stor the task index (taskIndex +1 because we begin with 0)
                     valSchedule[row][day] = taskIndex + 1;
                     // The remaining hours is reduced by 2 hours
@@ -139,7 +141,7 @@ public class SimulateAnnealing {
         return valSchedule;
     }
 
-    // The below method prints the schedule too the user
+    // The below method prints the schedule to the user
     public static void printSchedule() {
         System.out.println("Προτεινόμενο πρόγραμμα");
         for (int i = 1; i < 8; i++) {
