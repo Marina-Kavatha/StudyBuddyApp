@@ -4,24 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Subject {
-    // Enum για τους τύπους μαθημάτων
+    // Enum for the Subject Type
     public enum SubjectType {
         THEORETICAL, PRACTICAL, BOTH, UNDEFINED
     }
 
-    // Enum για τον στόχο μελέτης
+    // Enum for Studying Goal
     public enum StudyGoal {
         AVERAGE, GOOD, EXCELLENT
     }
 
     private String courseName;
-    private int difficultyLevel; // Επίπεδο δυσκολίας
-    private SubjectType subjectType; // Τύπος μαθήματος
-    private StudyGoal studyGoal; // Στόχος μελέτης
-    private static List<Exam> exams = new ArrayList<>(); // Λίστα εξετάσεων
-    private static List<Assignment> assignments = new ArrayList<>(); // Λίστα εργασιών
+    private int difficultyLevel; // difficulty Level
+    private SubjectType subjectType; // subject Type 
+    private StudyGoal studyGoal; // Study Goal 
+    private static List<Exam> exams = new ArrayList<>(); // Exam List
+    private static List<Assignment> assignments = new ArrayList<>(); // Assignment List
 
-    // Getters και Setters
+    // Getters and Setters
     public String getCourseName() {
         return courseName;
     }
@@ -55,15 +55,15 @@ public class Subject {
     }
 
     // Constructors
-    // Κατασκευαστής με όρισμα μόνο το όνομα του μαθήματος
+    //Constructor only for the name of the Subject
     public Subject(String courseName) {
         this.courseName = courseName;
-        this.difficultyLevel = 1; // Προεπιλεγμένο επίπεδο δυσκολίας
-        this.subjectType = SubjectType.UNDEFINED; // Προεπιλεγμένος τύπος μαθήματος
-        this.studyGoal = StudyGoal.GOOD; // Προεπιλεγμένος στόχος μελέτης
+        this.difficultyLevel = 1; // Default difficulty Level
+        this.subjectType = SubjectType.UNDEFINED; //Default subject type 
+        this.studyGoal = StudyGoal.GOOD; // Default studying goal 
     }
 
-    // Κατασκευαστής με όλα τα πεδία
+    // Constructor with all the fields 
     public Subject(String courseName, int difficultyLevel, SubjectType subjectType, StudyGoal studyGoal) {
         this.courseName = courseName;
         this.difficultyLevel = difficultyLevel;
@@ -71,21 +71,32 @@ public class Subject {
         this.studyGoal = studyGoal;
     }
 
-    // Μέθοδοι διαχείρισης εξετάσεων
-    public static void addExam(Exam exam) { //προσθήκη εξεταστικής
+    // Exam management methods
+    public static void addExam(Exam exam) { //Exam addition
         exams.add(exam);
     }
 
-    public static List<Exam> getExams() { //μέθοδος για ανάκτηση εξετάσεων
+    public static List<Exam> getExams() { //Method for Exam recovery
         return exams;
     }
 
-    // Μέθοδοι διαχείρισης εργασιών
-    public static void addAssignment(Assignment assignment) { //προσθήκη εργασίας
+    // Assignments management methods
+    public static void addAssignment(Assignment assignment) { //assignment addition
         assignments.add(assignment);
     }
 
-    public static List<Assignment> getAssignments() { //μέθοδος για ανάκτηση εργασιών
+    public static List<Assignment> getAssignments() { //Method for assignment recovery
         return assignments;
+    }
+
+    public double getTotalAssHours() {
+        double sum = 0.0;
+
+        // Traverse through the assignments list
+        for (Assignment assignment : assignments) {
+            sum += assignment.getEstimateHours(); // Add the estimated hours of the current assignment
+        }
+
+        return sum;
     }
 }
