@@ -10,7 +10,7 @@ import java.time.DayOfWeek;
 import java.util.Objects;
 
 public class CreateDays {
-    List<Day> = days;
+    List<Day> days;
 
     public createDays() {
         List<Day> days = new ArrayList<>();
