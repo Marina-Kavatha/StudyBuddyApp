@@ -58,7 +58,7 @@ public class Scoring {
             }
         }
 
-        // -0.1 penalty for studying the same subject two days in a row
+        
         return score;
     }
 }
