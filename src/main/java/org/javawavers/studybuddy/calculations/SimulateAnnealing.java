@@ -1,4 +1,5 @@
 package org.javawavers.studybuddy.calculations;/*
+ /*
  * This class distributes three kinds of tasks (studying -1, repetition -2,
  * assignment -3) into the available days randomly. The algorithm produces 10
  *  valid results,where the tasks are distributed into the available studying
@@ -7,8 +8,6 @@ package org.javawavers.studybuddy.calculations;/*
  * README file. The result with the higher score is considered the final result
  * and is given to the user as a recommended studying schedule.
  */
-
-import org.javawavers.studybuddy.availability.Availability;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,7 +22,7 @@ public class SimulateAnnealing {
      * with a value of zero.
      */
 
-    private List<SubjectTest> subjects; // List for subjects
+    private List<Subject> subjects; // List for subjects
     private static List<Task> tasks; // List for each task that is connected with a subject
 
     public SimulateAnnealing() {
@@ -38,19 +37,20 @@ public class SimulateAnnealing {
     }
 
     // Add a new Subject
-    public void addSubject(SubjectTest subject) {
+    public void addSubject(Subject subject) {
         subjects.add(subject);
-        SubTasks(subject); // Δημιουργία tasks για το μάθημα
+        // Creates tasks for the subject
+        SubTasks(subject);
     }
 
     // Creating tasks for each subject
-    private void SubTasks(SubjectTest subject) {
+    private void SubTasks(Subject subject) {
         // studying tasks
         int taskType1 = CalculativeAlgorithm.studyingPerweek(subject);
         // revision tasks
-        int taskType2 = CalculativeAlgorithm.numberOfScheduledTask(SpacedrepetitionAlgo.spacedrepetition());
+        int taskType2 = Repetition.calculateRep(taskType1);
         // assignment tasks
-        int taskType3 = CalculativeAlgorithm.numberOfScheduledTask(AssignmentTestaAlgo.getTotalAssignmentHours());
+        int taskType3 = CalculativeAlgorithm.numberOfScheduledTask(subject.getTotalAssHours());
 
         // Δημιουργούμε tasks για κάθε τύπο
         for (int i = 0; i < taskType1; i++) {
@@ -109,7 +109,7 @@ public class SimulateAnnealing {
     public static int[][] assignTask(List<Task> tasks) {
         Collections.shuffle(tasks);
         /*
-         * The table valSchedule stores the index of the task Array list, after the
+         * The table valSchedule stors the index of the task Array list, after the
          * tasks have been distributed into the available hours
          */
         int[][] valSchedule = new int[12][8];
@@ -125,7 +125,7 @@ public class SimulateAnnealing {
                 if (taskIndex >= tasks.size()) {
                     break;
                 }
-                if (remainingHours >= 2) { // each task requires 2 hours
+                if (remainingHours >= 2) { // each task requirs 2 hours
                     // stor the task index (taskIndex +1 because we begin with 0)
                     valSchedule[row][day] = taskIndex + 1;
                     // The remaining hours is reduced by 2 hours
@@ -141,7 +141,7 @@ public class SimulateAnnealing {
         return valSchedule;
     }
 
-    // The below method prints the schedule to the user
+    // The below method prints the schedule too the user
     public static void printSchedule() {
         System.out.println("Προτεινόμενο πρόγραμμα");
         for (int i = 1; i < 8; i++) {
