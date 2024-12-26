@@ -10,8 +10,8 @@ public class StudyBuddyApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-    /*  
-    //ΤO DO: οταν ανοιγει μια σελιδα θελουμε η αλλη να κλεινει αυτο για ολες τις σελιδες εκτος απο τα popups 
+/*
+//ΤO DO: οταν ανοιγει μια σελιδα θελουμε η αλλη να κλεινει αυτο για ολες τις σελιδες εκτος απο τα popups 
 //ανοιγουμε αρχικα την σελιδα εγγραφης
         Signup signup = new Signup();
         Stage signupStage = new Stage();
@@ -24,11 +24,12 @@ public class StudyBuddyApp extends Application {
         
         signupStage.show();
         
-    */    
+ */
         
         Calendar  calendar = new Calendar();
         Stage calendarStage = new Stage();
         calendar.start(calendarStage);
+       
 
 
     }

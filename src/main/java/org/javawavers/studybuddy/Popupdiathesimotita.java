@@ -11,7 +11,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class Popupdiathesimotita extends Application {
-
+    
     public static boolean isFinishedChecked = false;
 
     @Override
