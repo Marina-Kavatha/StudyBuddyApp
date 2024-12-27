@@ -88,4 +88,17 @@ public class Subject {
     public List<Assignment> getAssignments() { // Retrieve the list of assignments for the course
         return assignments;
     }
+
+    
+    public double getTotalAssHours() {
+        double sum = 0.0;
+
+        // Traverse through the assignments list
+        for (Assignment assignment : assignments) {
+            sum += assignment.getEstimateHours(); // Add the estimated hours of the current assignment
+        }
+
+        return sum;
+    }
+
 }
