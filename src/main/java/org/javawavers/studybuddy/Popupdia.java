@@ -1,5 +1,6 @@
 package org.javawavers.studybuddy;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,6 +17,7 @@ import javafx.util.converter.IntegerStringConverter;
 
 public class Popupdia extends Application {
     private final Map<String, Integer> availabilityMap = new HashMap<>();
+    int[] avperday = new int[8];
 
 
 
@@ -70,20 +72,28 @@ public class Popupdia extends Application {
         root.getChildren().add(okButton);
 
         okButton.setOnAction(event -> {
-//αποθηκευση τιμων που εισαγει ο χρηστης
-            availabilityMap.put("Δευτέρα", parseTextFieldValue(mondayField));
-            availabilityMap.put("Τρίτη", parseTextFieldValue(tuesdayField));
-            availabilityMap.put("Τετάρτη", parseTextFieldValue(wednesdayField));
-            availabilityMap.put("Πέμπτη", parseTextFieldValue(thursdayField));
-            availabilityMap.put("Παρασκευή", parseTextFieldValue(fridayField));
-            availabilityMap.put("Σάββατο", parseTextFieldValue(saturdayField));
-            availabilityMap.put("Κυριακή", parseTextFieldValue(sundayField));
-            availabilityMap.put("Συγκεκριμένη Ημέρα", parseTextFieldValue(specificDayField));
+//αποθηκευση τιμων που εισαγει ο χρηστης 
+//κληση της μεθοδου parseTextFieldValue για να ελενξουμε την τιμη που εισαγει ο χρηστης
+        avperday[1] = parseTextFieldValue(mondayField);
+        avperday[2] = parseTextFieldValue(tuesdayField);
+        avperday[3] = parseTextFieldValue(wednesdayField);
+        avperday[4] = parseTextFieldValue(thursdayField);
+        avperday[5] = parseTextFieldValue(fridayField);
+        avperday[6] = parseTextFieldValue(saturdayField);
+        avperday[7] = parseTextFieldValue(sundayField);
 
-//τιμη null
-            availabilityMap.forEach((day, value) -> {
-                System.out.println(day + ": " + (value != null ? value : "null"));
-            });
+        availabilityMap.put("Δευτέρα", avperday[1]);
+        availabilityMap.put("Τρίτη", avperday[2]);
+        availabilityMap.put("Τετάρτη", avperday[3]);
+        availabilityMap.put("Πέμπτη", avperday[4]);
+        availabilityMap.put("Παρασκευή", avperday[5]);
+        availabilityMap.put("Σάββατο", avperday[6]);
+        availabilityMap.put("Κυριακή", avperday[7]);
+        availabilityMap.put("Συγκεκριμένη Ημέρα", parseTextFieldValue(specificDayField));
+
+//εκτυπωση των αποτελεσματων των ημερων(για το test)
+        System.out.println(Arrays.toString(avperday));
+
 
 // Κλεισιμο παραθυρου
             primaryStage.close();
@@ -127,12 +137,19 @@ public class Popupdia extends Application {
         return textField;
     
     }
+//ελνχος αν το κειμενο ειναι κενο η περιεχει μονο κενα τοτε επιστρεφουμε την τιμη 0 για καθε ημερα 
     private Integer parseTextFieldValue(TextField textField) {
         String text = textField.getText();
-        return text.isEmpty() ? null : Integer.parseInt(text);
+        if (text == null || text.trim().isEmpty() ) {
+            return 0;
+        } else {
+            return  Integer.parseInt(text);
+        }
     }
     
-
+    public int[] getAvailability() {
+        return avperday;
+    }
     public static void main(String[] args) {
         launch(args);
     }
