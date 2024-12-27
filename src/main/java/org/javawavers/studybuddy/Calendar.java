@@ -19,6 +19,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.SVGPath;
+import javafx.scene.shape.SVGPath;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
@@ -204,6 +205,7 @@ public class Calendar extends Application {
         });
 
 //οριζουμε την θεση του κουμπιου availiability
+//οριζουμε την θεση του κουμπιου availiability
         StackPane availabilityPane = new StackPane(availabilityButton);
         availabilityPane.setPrefSize(150, 30);
         availabilityPane.setLayoutX(centerPanel.getWidth() - 300);
@@ -223,8 +225,24 @@ public class Calendar extends Application {
         refreshButton.setOnAction(event -> {
     
         });
+
+ //κουμπι για Refresh του προογραμματος
+        Button refreshButton = new Button();
+        refreshButton.setStyle("-fx-background-color: #CF308C; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 30px;");
+        refreshButton.setPrefSize(30, 30);
+
+//προσθηκη εικονιδιου στο κουμπι για κυκλικα βελη
+        SVGPath refreshIcon = new SVGPath();
+        refreshIcon.setContent("M12 2V5C7.58 5 4 8.58 4 13C4 15.27 5.05 17.36 6.77 18.63L8.22 17.18C7.04 16.17 6.27 14.67 6.27 13C6.27 9.8 8.8 7.27 12 7.27V10L16 6L12 2ZM18.23 4.37L16.78 5.82C17.96 6.83 18.73 8.33 18.73 10C18.73 13.2 16.2 15.73 13 15.73V12L9 16L13 20V17C17.42 17 21 13.42 21 9C21 6.73 19.95 4.64 18.23 4.37Z");
+        refreshIcon.setFill(Color.WHITE);
+        refreshButton.setGraphic(refreshIcon);
+
+        refreshButton.setOnAction(event -> {
+    
+        });
         
 //βαζουμε ολα τα στοιχεια του κεντρου μαζι και τα επιστρεφουμε
+        centerPanel.getChildren().addAll(weekSwitcher, todayButton, calendarGrid, availabilityPane, refreshButton);
         centerPanel.getChildren().addAll(weekSwitcher, todayButton, calendarGrid, availabilityPane, refreshButton);
         
         return centerPanel;
@@ -309,6 +327,8 @@ public class Calendar extends Application {
     private void createCalendarGrid(GridPane grid, List<Task> besttask, int[][] schedule) {
         String[] days = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
 
+
+//ρυθμιζουμε το πλατος για τις 7 στηλες
 
 //ρυθμιζουμε το πλατος για τις 7 στηλες
         for (int i = 0; i < days.length; i++) {
