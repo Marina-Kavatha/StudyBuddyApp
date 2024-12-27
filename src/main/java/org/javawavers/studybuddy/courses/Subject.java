@@ -88,4 +88,15 @@ public class Subject {
     public List<Assignment> getAssignments() { //μέθοδος για ανάκτηση εργασιών
         return assignments;
     }
+
+    public double getTotalAssHours() {
+        double sum = 0.0;
+
+        // Traverse through the assignments list
+        for (Assignment assignment : assignments) {
+            sum += assignment.getEstimateHours(); // Add the estimated hours of the current assignment
+        }
+
+        return sum;
+    }
 }
