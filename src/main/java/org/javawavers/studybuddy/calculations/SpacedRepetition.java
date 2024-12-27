@@ -8,13 +8,13 @@ public class SpacedRepetition {
 
     public class Lesson {
         private String title;
-        private int step; //σε ποιο στάδιο βρίσκεται η επανάληψη
-        private LocalDate nextReviewDate; //την ημερομηνία της επόμενης επανάληψης
+        private int step; // σε ποιο στάδιο βρίσκεται η επανάληψη
+        private LocalDate nextReviewDate; // την ημερομηνία της επόμενης επανάληψης
 
-        public Lesson(String title) { //κατασκευαστης
+        public Lesson(String title, LocalDate learnedDate) { // κατασκευαστής
             this.title = title;
-            this.step = 1; //η επαναληψη ξεκινά με στάδιο 1
-            this.nextReviewDate = this.getNextReviewDate();
+            this.step = 1; // η επανάληψη ξεκινά με στάδιο 1
+            this.nextReviewDate = learnedDate.plusDays(1);
         }
 
         public String getTitle() {
@@ -26,56 +26,52 @@ public class SpacedRepetition {
         }
 
         public LocalDate getNextReviewDate() {
-            nextReviewDate = LocalDate.now().plusDays(getInterval(step));
-            return nextReviewDate;
+            return nextReviewDate; // Return the stored nextReviewDate
+        }
+
+        public void advanceStep(boolean remember) { // Updates step and calculates the next review date
+            if (!remember) {
+                step = 1; // Reset to step 1 if user forgot the lesson
+                nextReviewDate = LocalDate.now().plusDays(getInterval(step));
+            } else {
+                step++; // Move to the next step
+                nextReviewDate = nextReviewDate.plusDays(getInterval(step));
+            }
         }
 
         public int getStep() {
             return step;
         }
 
-        private int getInterval(int step) {   // επιστρέφει το διάστημα για την επόμενη επανάληψη με βάση πόσες επαναλήψεις έχει ήδη κάνει
-            if (step == 1)
-                return 1;
-            if (step == 2)
-                return 7;
-            if (step == 3)
-                return 16;
-            if (step == 4)
-                return 35;
-            else
-                return getInterval(step - 1) * 2;
-        }
-
-        public void setStep(boolean remember) { //remember-αν θυμάται μια πληροφορία
-            if (remember == false) {
-                step = 1; //αν ξεχάσει τελείως μία πληροφορία τότε η επανάληψη ξαναρχίζει από την αρχή
-            } else {
-                step++; //αν θυμάται την πληροφορία τότε πάει στο επόμενο βήμα της επανάληψης
-            }
+        private int getInterval(int step) { // Επιστρέφει το διάστημα για την επόμενη επανάληψη
+            if (step == 1) return 1;
+            if (step == 2) return 7;
+            if (step == 3) return 16;
+            if (step == 4) return 35;
+            return getInterval(step - 1) * 2; // Exponential growth for higher steps
         }
 
         @Override
         public String toString() {
-            return "για το μάθημα=" + title + " που βρίσκεται στο στάδιο επανάληψης=" + step
-                    + " η επόμενη ημερομηνία για επανάληψη είναι=" + nextReviewDate;
+            return "μάθημα=" + title
+                    + ", η επόμενη ημερομηνία για επανάληψη είναι=" + nextReviewDate;
         }
-    } //τέλος εσωτερικής κλάσης Lesson
+    }
 
-    private List<Lesson> lessons; //λίστα με τα μαθηματα
+    public List<Lesson> lessons; // λίστα με τα μαθήματα
 
-    public SpacedRepetition() { // ο κατασκευαστης αρχικοποεί μια κενή λίστα για την αποθήκευση των μαθημάτων
+    public SpacedRepetition() { // Ο κατασκευαστής αρχικοποιεί μια κενή λίστα για την αποθήκευση των μαθημάτων
         this.lessons = new ArrayList<>();
     }
 
-    public void addLesson(String title) { //προσθέτει ενα μάθημα στην λίστα
-        lessons.add(new Lesson(title));
+    public void addLesson(String title, LocalDate date) { // Προσθέτει ένα μάθημα στην λίστα
+        lessons.add(new Lesson(title, date));
     }
 
-    public List<Lesson> getDueLessons(LocalDate date) {    //επιστρέφει όλα μαθήματα που πρέπει να διαβάσει μια μέρα
-        List<Lesson> dueLessons = new ArrayList<>();  //δημιουργια πινακα για μαθήματα
+    public List<Lesson> getDueLessons(LocalDate date) { // Επιστρέφει όλα μαθήματα που πρέπει να διαβάσει μια μέρα
+        List<Lesson> dueLessons = new ArrayList<>();
         for (Lesson lesson : lessons) {
-            if (lesson.getNextReviewDate() == date) {  // αν η ημερομηνια επόμενης επανάληψης ειναι η ημερομηνία στο όρισμα τοτε το προσθέτει στην λίστα
+            if (lesson.getNextReviewDate().isEqual(date)) { // If the next review date matches the given date
                 dueLessons.add(lesson);
             }
         }

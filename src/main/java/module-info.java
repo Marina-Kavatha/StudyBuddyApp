@@ -4,6 +4,7 @@ module org.javawavers.studybuddy {
 
     requires org.controlsfx.controls;
     requires org.xerial.sqlitejdbc;
+    requires org.junit.jupiter.api;
 
     opens org.javawavers.studybuddy to javafx.fxml;
     exports org.javawavers.studybuddy;

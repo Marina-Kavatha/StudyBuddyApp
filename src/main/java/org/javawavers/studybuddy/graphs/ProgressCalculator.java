@@ -1,4 +1,6 @@
 package org.javawavers.studybuddy.graphs;
+import org.javawavers.studybuddy.courses.ScheduledTask;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -114,10 +116,6 @@ public class ProgressCalculator {
             subjectDistribution.add(distribution);
         }
     }
-
-
-
-
 }
 
 
