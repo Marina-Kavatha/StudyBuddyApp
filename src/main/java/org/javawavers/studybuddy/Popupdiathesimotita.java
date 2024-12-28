@@ -1,11 +1,14 @@
 package org.javawavers.studybuddy;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -13,9 +16,27 @@ import javafx.stage.Stage;
 public class Popupdiathesimotita extends Application {
     
     public static boolean isFinishedChecked = false;
+    private String taskDescription = "κενο";
+    private LocalDate examDate;
+    private long daysLeft = -1;
+    private String exam;
+
+    public void setTaskDescription(String description, LocalDate examDate) {
+        this.taskDescription = description;
+        this.examDate = examDate;
+    }
 
     @Override
     public void start(Stage primaryStage) {
+        if (examDate != null) {
+            this.daysLeft = ChronoUnit.DAYS.between(LocalDate.now(), examDate);
+            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM");
+            this.exam = examDate.format(dateFormatter);
+        } else {
+            this.daysLeft = -1;
+            this.exam = "never";
+        }
+        
         Pane root = new Pane();
         root.setStyle("-fx-background-radius: 20px; -fx-background-color: white;");
         root.setPrefSize(241, 280);
@@ -36,8 +57,8 @@ public class Popupdiathesimotita extends Application {
         dueLabel.setFont(Font.font(14));
         dueLabel.setLayoutX(2);
         dueLabel.setLayoutY(2);
-
-        Label dateLabel = new Label("15/10");
+        
+        Label dateLabel = new Label(exam);
         dateLabel.setFont(Font.font(14));
         dateLabel.setLayoutX(34);
         dateLabel.setLayoutY(2);
@@ -51,7 +72,8 @@ public class Popupdiathesimotita extends Application {
         remainingPane.setLayoutY(52);
         remainingPane.setPrefSize(98, 23);
 
-        Label remainingLabel = new Label("15 days left");
+        
+        Label remainingLabel = new Label(daysLeft + " days left");
         remainingLabel.setFont(Font.font(14));
         remainingLabel.setLayoutX(10);
         remainingLabel.setLayoutY(1);
@@ -59,13 +81,12 @@ public class Popupdiathesimotita extends Application {
         remainingPane.getChildren().add(remainingLabel);
         root.getChildren().add(remainingPane);
 
-        TextArea descriptionTextArea = new TextArea();
-        descriptionTextArea.setText("Ολοκλήρωση των πρώτων 15 \nδιαφανείων.");
-        descriptionTextArea.setStyle("-fx-border-color: black;");
-        descriptionTextArea.setLayoutX(26);
-        descriptionTextArea.setLayoutY(91);
-        descriptionTextArea.setPrefSize(189, 124);
-        root.getChildren().add(descriptionTextArea);
+        Label descriptionLabel = new Label(taskDescription);
+        descriptionLabel.setStyle("-fx-border-color: black;");
+        descriptionLabel.setLayoutX(26);
+        descriptionLabel.setLayoutY(91);
+        descriptionLabel.setPrefSize(189, 124);
+        root.getChildren().add(descriptionLabel);
 
         CheckBox finishedCheckBox = new CheckBox("Finished");
         finishedCheckBox.setFont(Font.font("System Bold", 14));

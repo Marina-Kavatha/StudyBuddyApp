@@ -1,6 +1,8 @@
 package org.javawavers.studybuddy;
 
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.application.Application;
@@ -19,7 +21,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.SVGPath;
-import javafx.scene.shape.SVGPath;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
@@ -29,16 +30,23 @@ import javafx.stage.Stage;
 public class Calendar extends Application {
     //MainTestAlgorithm mt = new MainTestAlgorithm();
     StudyBuddyApp st = new StudyBuddyApp();
-   
+
    //SimulateAnnealing simulateAnnealing = new SimulateAnnealing();
    // = simulateAnnealing.besttask;
    //List<Task> besttask = st.besttask;
         
 
-        
-   public static List<Task> besttask;
-   public static int[][] schedule;
-   List<Subject> subjects;
+    public static List<Task> besttask = new ArrayList<>();
+    //public static List<Task> besttask;
+    public static int[][] schedule;
+    ArrayList<SubjectTest> subject;
+    public static List<String> notStartedYet = new ArrayList<>();
+    public static List<String> completed = new ArrayList<>();
+    private VBox upcomingTasksBox = new VBox(10);
+    private VBox completedTasksBox = new VBox(10);
+
+
+
 
 
     @Override
@@ -205,7 +213,6 @@ public class Calendar extends Application {
         });
 
 //οριζουμε την θεση του κουμπιου availiability
-//οριζουμε την θεση του κουμπιου availiability
         StackPane availabilityPane = new StackPane(availabilityButton);
         availabilityPane.setPrefSize(150, 30);
         availabilityPane.setLayoutX(centerPanel.getWidth() - 300);
@@ -225,25 +232,10 @@ public class Calendar extends Application {
         refreshButton.setOnAction(event -> {
     
         });
-
- //κουμπι για Refresh του προογραμματος
-        Button refreshButton = new Button();
-        refreshButton.setStyle("-fx-background-color: #CF308C; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 30px;");
-        refreshButton.setPrefSize(30, 30);
-
-//προσθηκη εικονιδιου στο κουμπι για κυκλικα βελη
-        SVGPath refreshIcon = new SVGPath();
-        refreshIcon.setContent("M12 2V5C7.58 5 4 8.58 4 13C4 15.27 5.05 17.36 6.77 18.63L8.22 17.18C7.04 16.17 6.27 14.67 6.27 13C6.27 9.8 8.8 7.27 12 7.27V10L16 6L12 2ZM18.23 4.37L16.78 5.82C17.96 6.83 18.73 8.33 18.73 10C18.73 13.2 16.2 15.73 13 15.73V12L9 16L13 20V17C17.42 17 21 13.42 21 9C21 6.73 19.95 4.64 18.23 4.37Z");
-        refreshIcon.setFill(Color.WHITE);
-        refreshButton.setGraphic(refreshIcon);
-
-        refreshButton.setOnAction(event -> {
-    
-        });
         
 //βαζουμε ολα τα στοιχεια του κεντρου μαζι και τα επιστρεφουμε
         centerPanel.getChildren().addAll(weekSwitcher, todayButton, calendarGrid, availabilityPane, refreshButton);
-        centerPanel.getChildren().addAll(weekSwitcher, todayButton, calendarGrid, availabilityPane, refreshButton);
+
         
         return centerPanel;
     }
@@ -255,17 +247,27 @@ public class Calendar extends Application {
         VBox rightPanel = new VBox(10);
         rightPanel.setPadding(new Insets(10));
         rightPanel.setAlignment(Pos.TOP_CENTER);
-    
 
         rightPanel.setPrefHeight(Double.MAX_VALUE);
     
-//βαζουμε τα δυο task 
-        VBox upcomingTasksBox = createTaskBoxWithChecklist("Upcoming Tasks", "#96E2D6");
-        VBox completedTasksBox = createTaskBoxWithChecklist("Completed Tasks", "#15B569");
+//βαζουμε τα δυο task
+        VBox upcomingTasksBox = createTaskBoxWithChecklist("Upcoming Tasks", "#96E2D6", notStartedYet);
+        VBox completedTasksBox = createTaskBoxWithChecklist("Completed Tasks", "#15B569", completed);
     
 //χωριζουμε δυναμικα τα task το μεγεθος να μοιραζονται στην μεση
         VBox.setVgrow(upcomingTasksBox, Priority.ALWAYS);
         VBox.setVgrow(completedTasksBox, Priority.ALWAYS);
+//προσθετουμε την λιστα taskdescription η οποια περιεχει ολα τα task
+        for (Task task : besttask) {
+            String taskDescription = task.toString();
+            notStartedYet.add(taskDescription);
+        }
+    
+//ενημερωνουμε το upcomingtaskbox
+        updateUpcomingTasks(upcomingTasksBox);
+        updateCompletedTasks(completedTasksBox);
+
+        //updateTaskBox(completedTasksBox, completed);
     
 //προσθετουμε και επιστρεφουμε το δεξι panel
         rightPanel.getChildren().addAll(upcomingTasksBox, completedTasksBox);
@@ -273,7 +275,7 @@ public class Calendar extends Application {
         return rightPanel;
     }
 //δημιουργουμε τα checkbox που στην συνεχεια πρεπει να κατανημουμε αναλογα τα task
-    private VBox createTaskBoxWithChecklist(String title, String color) {
+    private VBox createTaskBoxWithChecklist(String title, String color, List<String> taskList) {
         VBox box = new VBox(5);
         box.setStyle("-fx-border-color: black; -fx-border-radius: 5; -fx-background-radius: 5;");
         box.setPrefWidth(250);
@@ -284,17 +286,31 @@ public class Calendar extends Application {
         titleLabel.setTextFill(Color.web("#1e1d1d"));
         titleLabel.setAlignment(Pos.CENTER);
         titleLabel.setMaxWidth(Double.MAX_VALUE);
-    
+
 
         VBox tasksList = new VBox(5);
         tasksList.setStyle("-fx-padding: 10;");
-        
 
-        tasksList.getChildren().add(createCheckBox("Task 1"));
-        tasksList.getChildren().add(createCheckBox("Task 2"));
-        tasksList.getChildren().add(createCheckBox("Task 3"));
-        
-        box.getChildren().addAll(titleLabel, tasksList);
+        Button toggleButton = new Button("▼");
+        toggleButton.setStyle("-fx-background-color: transparent; -fx-font-size: 14px; -fx-text-fill: black;");
+    
+
+        tasksList.setMaxHeight(200);
+        tasksList.setPrefHeight(200);
+        tasksList.setStyle("-fx-visibility: visible;");
+    
+
+        toggleButton.setOnAction(event -> {
+            if (tasksList.getMaxHeight() == 200) {
+                tasksList.setMaxHeight(Double.MAX_VALUE);
+                toggleButton.setText("▲");
+            } else {
+                tasksList.setMaxHeight(200);
+                toggleButton.setText("▼");
+            }
+        });
+    
+        box.getChildren().addAll(titleLabel, tasksList, toggleButton);
         
         return box;
     }
@@ -317,6 +333,28 @@ public class Calendar extends Application {
 
         javafx.scene.control.CheckBox taskCheckBox = new javafx.scene.control.CheckBox(taskName);
         taskCheckBox.setStyle("-fx-font-size: 16px; -fx-text-fill: black;");
+
+        taskCheckBox.setOnAction(event -> {
+            if (taskCheckBox.isSelected()) {
+                if (notStartedYet.contains(taskName)) {
+                    notStartedYet.remove(taskName);
+                    completed.add(taskName);
+                }
+            } else {
+                if (completed.contains(taskName)) {
+                    completed.remove(taskName);
+                    notStartedYet.add(taskName);
+                }
+            }
+    
+ 
+            updateUpcomingTasks(upcomingTasksBox);
+            updateCompletedTasks(completedTasksBox);
+            //updateTaskBox(completedTasksBox, completed);
+    
+
+            System.out.println("Completed tasks: " + completed);
+        });
         
         checkBoxBox.getChildren().add(taskCheckBox);
         
@@ -331,7 +369,7 @@ public class Calendar extends Application {
 //ρυθμιζουμε το πλατος για τις 7 στηλες
 
 //ρυθμιζουμε το πλατος για τις 7 στηλες
-        for (int i = 0; i < days.length; i++) {
+        for (int i = 1; i < days.length + 1; i++) {
             ColumnConstraints column = new ColumnConstraints();
             column.setPercentWidth(100.0 / 7);
             grid.getColumnConstraints().add(column);
@@ -357,7 +395,7 @@ public class Calendar extends Application {
 
 
         for (int row = 1; row < 11; row++) {
-            for (int col = 0; col <= days.length - 1; col++) {
+            for (int col = 0; col <= days.length -1; col++) {
                 Label cell = new Label();
                 cell.setStyle("-fx-border-color: gray; -fx-border-width: 0; -fx-alignment: center;");
                 cell.setFont(Font.font("System", FontWeight.NORMAL, 14));
@@ -374,10 +412,11 @@ public class Calendar extends Application {
                     if (taskIndex >= 0 && taskIndex < besttask.size()) {
                         //cell.setText(besttask.get(taskIndex).toString());
                         String taskText = besttask.get(taskIndex).toString();
+                        
                         //cell.setText(taskText);
                         String firstWord = taskText.split(" ")[0];
-                        for (Subject subject : subjects) {
-                            if (subject.getCourseName().equalsIgnoreCase(firstWord)) {
+                        for (SubjectTest subject : subject) {
+                            if (subject.getName().equalsIgnoreCase(firstWord)) {
                                 cell.setStyle("-fx-background-color: " + subject.getColor() + "; " +
                                     "-fx-border-color: gray; -fx-border-width: 0; -fx-alignment: center;");
                                 break;
@@ -390,12 +429,34 @@ public class Calendar extends Application {
                     cell.setText("");
                 }
 
-
+                final int rowFinal = row;
+                final int colFinal = col;
 
 //οταν ο χρηστης παταει πανω σε οποιδηποτε κελη τοτε του εμφανιζεται η σελιδα popupdiathesimotita
                 cell.setOnMouseClicked(event -> {
+                    
+                    String taskDescription = "κενο";
+                    LocalDate examDate = null;
+
+                    if (schedule != null && besttask != null &&
+                        rowFinal < schedule.length && colFinal < schedule[rowFinal].length &&
+                        schedule[rowFinal][colFinal] > 0 && schedule[rowFinal][colFinal] <= besttask.size()) {
+
+                        int taskIndex = schedule[rowFinal][colFinal] - 1;
+                    if (taskIndex >= 0 && taskIndex < besttask.size()) {
+                        taskDescription = besttask.get(taskIndex).toString();
+                    }
+                }
+                for (SubjectTest subject : subject) {
+                    if (taskDescription.contains(subject.getName())) {
+                        examDate = subject.getExamDate();
+                        break;
+                    }
+                }
+
 
                     Popupdiathesimotita popup = new Popupdiathesimotita();
+                    popup.setTaskDescription(taskDescription, examDate);
                     Stage popupStage = new Stage();
                     popup.start(popupStage);
                 });
@@ -406,6 +467,32 @@ public class Calendar extends Application {
         }
     }
 
+    private void updateUpcomingTasks(VBox upcomingTasksBox) {
+        upcomingTasksBox.getChildren().clear();
+        for (String taskDescription : notStartedYet) {
+            System.out.println("Add" + taskDescription);
+            HBox checkBoxBox = createCheckBox(taskDescription);
+            upcomingTasksBox.getChildren().add(checkBoxBox);
+        }
+    }
+
+    private void updateTaskBox(VBox box, List<String> taskList) {
+        box.getChildren().clear();
+        for (String taskName : taskList) {
+            System.out.println("Add Completed: " + taskName);
+            box.getChildren().add(createCheckBox(taskName));
+        }
+    }
+
+    private void updateCompletedTasks(VBox completedTasksBox) {
+        completedTasksBox.getChildren().clear();
+        for (String taskDescription : completed) {
+            HBox checkBoxBox = createCheckBox(taskDescription);
+            System.out.println("completed" + taskDescription);
+            completedTasksBox.getChildren().add(checkBoxBox);
+        }
+    }
+    
 
 
 

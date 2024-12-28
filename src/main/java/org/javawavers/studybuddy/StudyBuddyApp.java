@@ -58,6 +58,7 @@ public class StudyBuddyApp extends Application {
         List<Task> besttask = SimulateAnnealing.getBestTask();
         
         Calendar  calendar = new Calendar();
+        calendar.subject = subject;
         calendar.besttask = besttask;
         calendar.schedule = schedule;
         Stage calendarStage = new Stage();

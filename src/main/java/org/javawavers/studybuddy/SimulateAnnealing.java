@@ -13,7 +13,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class SimulateAnnealing {
-    MainTestAlgorithm mt = new MainTestAlgorithm();
+
     
     /*
      * The 12 rows represent the maximum tasks that can be assigned to a day,
