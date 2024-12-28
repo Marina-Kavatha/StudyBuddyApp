@@ -22,8 +22,10 @@ build:
     paths:
       - target/*.jar
     expire_in: 1 hour
+  only:
+    - branches
   rules:
-    - if: '$CI_COMMIT_BRANCH == "main" || $CI_COMMIT_BRANCH == "dev" || $CI_COMMIT_BRANCH =~ /^feature-/'
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
 
 test:
   stage: test
@@ -34,8 +36,8 @@ test:
     when: always
     reports:
       junit: target/test-classes/*.xml
-  rules:
-    - if: '$CI_COMMIT_BRANCH == "main" || $CI_COMMIT_BRANCH == "dev" || $CI_COMMIT_BRANCH =~ /^feature-/'
+  only:
+    - branches
 
 checkstyle:
   stage: checkstyle
@@ -43,8 +45,10 @@ checkstyle:
   script:
     - mvn checkstyle:check
   allow_failure: true
+  only:
+    - branches
   rules:
-    - if: '$CI_COMMIT_BRANCH == "main" || $CI_COMMIT_BRANCH == "dev" || $CI_COMMIT_BRANCH =~ /^feature-/'
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
 
 pmd:
   stage: pmd
