@@ -1,9 +1,9 @@
 stages:
-- build
-- test
-- checkstyle
-- pmd
-- deploy
+  - build
+  - test
+  - checkstyle
+  - pmd
+  - deploy
 
 variables:
   MAVEN_OPTS: "-Dmaven.test.failure.ignore=true"
@@ -22,8 +22,6 @@ build:
     paths:
       - target/*.jar
     expire_in: 1 hour
-  only:
-    - branches
   rules:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
 
@@ -36,8 +34,8 @@ test:
     when: always
     reports:
       junit: target/test-classes/*.xml
-  only:
-    - branches
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
 
 checkstyle:
   stage: checkstyle
@@ -45,8 +43,6 @@ checkstyle:
   script:
     - mvn checkstyle:check
   allow_failure: true
-  only:
-    - branches
   rules:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
 
@@ -63,8 +59,8 @@ deploy:
   stage: deploy
   script:
     - echo "Deploying to production"
-  only:
-    - main
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
 
 merge_check:
   stage: test
