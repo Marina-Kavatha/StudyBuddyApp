@@ -230,7 +230,7 @@ public class Calendar extends Application {
         refreshButton.setGraphic(refreshIcon);
 
         refreshButton.setOnAction(event -> {
-    
+            //schedule = SimulateAnnealing.SchedulResult();
         });
         
 //βαζουμε ολα τα στοιχεια του κεντρου μαζι και τα επιστρεφουμε
