@@ -15,7 +15,7 @@ public class Assignment {
      * //θεωρω πως εχουμε παρει απο την βαση δεδομενων ειτε απο την μνημη της
      * εφαρμογης : μια λιστα με τις εργασιες που εχει ο χρηστης , μια λιστα με τα
      * deadllines της καθε εργασιας και την εκφωνηση της ασκησης
-     * 
+     *
      * ListAssignment listassignment = new ListAssignment();
      * //περνουμε απο την κλαση listAssignment τις λιστες για τις προθεσμιες και για
      * τα μαθηατα και τις εργασιες . στην πραγματικοτητα αυτη η κλαση θα ειναι η
@@ -37,7 +37,7 @@ public class Assignment {
 
     // κατασκευαστης με παραμετρους
     public Assignment(String title, long remaingdays, LocalDate deadline, int estimateHours, String description,
-            LocalDate completeDate) {
+                      LocalDate completeDate) {
         this.title = title;
         this.remaingdays = getRemainingDays(today, deadline);
         this.deadline = deadline;
@@ -49,11 +49,11 @@ public class Assignment {
     LocalDate today = LocalDate.now();
 
     public long getRemainingDays(LocalDate today, LocalDate deadline) { // μεθοδος υπολογισμου ποσες μερες μενουν ακομα
-                                                                        // για την ληξη της προθεσμιας
+        // για την ληξη της προθεσμιας
 
         long daysremaining = ChronoUnit.DAYS.between(today, deadline);// με αυτην την εντολη η βιβλιοθηκη chronounit
-                                                                      // επιστρεφει τις μερες που εχουν διαφορα δυο
-                                                                      // ημερομηνιες
+        // επιστρεφει τις μερες που εχουν διαφορα δυο
+        // ημερομηνιες
         return daysremaining;
 
     }
@@ -189,3 +189,4 @@ public class Assignment {
     public void setDescription() {
         this.description = description;
     }
+}
