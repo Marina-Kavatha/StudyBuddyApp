@@ -1,5 +1,7 @@
 import java.time.LocalDate;
+import java.time.format.TextStyle;
 import java.util.LinkedList;
+import java.util.Locale;
 
 public class Availability {
     /*
@@ -45,53 +47,45 @@ public class Availability {
     /*
      * checks if the day that the program asserts a task to the user is set as non
      * available
-     * and returns true if it is
+     * and returns true if the day is Available 
      */
 
-    public static boolean checkAvailability(LocalDate l) {
-        return dates.contains(l);
+     public static boolean checkAvailability(int day) {
+        LocalDate taskDate = LocalDate.now().plusDays(day);
+        return !dates.contains(taskDate); 
     }
+    
 
     // returns the total available hours for the day that is asked
     public static int getTotalAvailableHours(int i) {
-        if (i <= 0 || i > 7) {
-            throw new IllegalArgumentException(" Ο αριθμός πρέπει να είναι μεταξύ του 1και του 7");
+        LocalDate today= LocalDate.now();//The date of the day that we curently are
+        //The date that we want to assert the tasks
+        LocalDate examDate=today.plusDays(i);
+
+        // Name of the day as a String type Data
+        String dayName = examDate.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.forLanguageTag("el"));
+
+        switch (dayName) {
+            case "Δευτέρα":
+                return avperday[1];
+            case "Τρίτη":
+                return avperday[2];
+            case "Τετάρτη":
+                return avperday[3];
+            case "Πέμπτη":
+                return avperday[4];
+            case "Παρασκευή":
+                return avperday[5];
+            case "Σάββατο":
+                return avperday[6];
+            case "Κυριακή":
+                return avperday[7];
+            default:
+                throw new IllegalArgumentException("Ημέρα μη έγκυρη: " + dayName);
         }
-        return avperday[i];
+        
 
     }
 
-    /*
-     * Calculates the remaining study time left for a day.
-     * Takes as input the day number, the repetition number :
-     * 0 represents the first time the method is called,
-     * -1 indicates that the task cannot be assigned to that day due to time
-     * limitations, and
-     * 1 indicates that the task has been successfully assigned for the day.
-     */
-
-    private static int remainghours; // saves the remaining available hours
-
-    public static int availabilityLeft(int i, int j) {
-        if (j == 0) {
-            // sets the remaining hours for studying equal to the available hours
-            remainghours = getTotalAvailableHours(i);
-            // every scheduled task has a duration of two hours
-            if (remainghours >= 2) {
-                remainghours = remainghours - 2;
-                return 1;
-            } else {
-                return -1;
-            }
-
-        } else {
-            if (remainghours >= 2) {
-                remainghours = remainghours - 2;
-                return 1;
-            } else {
-                return -1;
-            }
-        }
-
-    }
+    
 }
