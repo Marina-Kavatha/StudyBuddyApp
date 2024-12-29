@@ -1,3 +1,4 @@
+package org.javawavers.studybuddy.calculations;
 import java.time.LocalDate;
 
 public abstract class SubjectElement {
