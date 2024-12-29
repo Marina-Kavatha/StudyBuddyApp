@@ -1,18 +1,25 @@
 package org.javawavers.studybuddy.calculations;
 
-public class Task {
-    private Subject subj;
-    private int taskType; // 1: διάβασμα, 2: επανάληψη, 3: εργασία
 
-    // constructor
+public class Task {
+    private String subjName;
+    private int taskType; // 1: Studying , 2: revision, 3: assignment
+
+    // constructor with the Subject object
     public Task(Subject subj, int taskType) {
-        this.subj = subj;
+        subjName = subj.getCourseName();
+        this.taskType = taskType;
+    }
+
+    // constructor with the subject as a String
+    public Task(String subj, int taskType) {
+        subjName = subj;
         this.taskType = taskType;
     }
 
     // get subject's name
-    public Subject getSubject() {
-        return subj;
+    public String getSubject() {
+        return subjName;
     }
 
     // get task's type
@@ -30,6 +37,6 @@ public class Task {
         } else {
             type = "Εργασία";
         }
-        return subj.getCourseName() + " - " + type;
+        return subjName + " - " + type;
     }
 }
