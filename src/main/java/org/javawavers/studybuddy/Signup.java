@@ -23,6 +23,7 @@ public class Signup extends Application {
 
     public static String storedEmail = "";
     public static String storedPassword = "";
+    public static String storedUsername = "admin";
 
     @Override
     public void start(Stage primaryStage) {
@@ -211,12 +212,12 @@ public class Signup extends Application {
 
 //οριζουμε την ενεργεια οταν ο χρηστης παταει το κουμπι εγγραφης 
         registerButton.setOnAction(event -> {
-            String name = nameField.getText();
+            storedUsername = nameField.getText();
             storedEmail = emailField.getText();
             storedPassword = passwordField.getText();
             String confirmPassword = confirmPasswordField.getText();
 //εαν ο χρηστης εχει αφησει εστω και μια φορμα κενη τοτε εμφανιζει μυνημα λαθους 
-            if (name.isEmpty() || storedEmail.isEmpty() || storedPassword.isEmpty() || confirmPassword.isEmpty()) {
+            if (storedUsername.isEmpty() || storedEmail.isEmpty() || storedPassword.isEmpty() || confirmPassword.isEmpty()) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Η φόρμα δεν έχει ολοκληρωθεί");
                 alert.setHeaderText(null);
@@ -231,7 +232,7 @@ public class Signup extends Application {
 //λιστα για να εισαγουμε τα errors που εμφανιζονται στον χρηστη 
             List<String> errors = new ArrayList<>();
 //error αν το ονομα ειναι λιγοτερο απο 4 χαρακτηρες
-            if (name.isEmpty() || name.length() <= 4) {
+            if (storedUsername.isEmpty() || storedUsername.length() <= 4) {
                 errors.add("• Το όνομα πρέπει να έχει πάνω από 4 χαρακτήρες");
             }
 //error αν το email δεν περιεχει το @
@@ -275,7 +276,7 @@ public class Signup extends Application {
             confirmPasswordField.clear();
 
 //βλεπουμ τα δεδομενα στο cmd
-            System.out.println("Name: " + name);
+            System.out.println("Name: " + storedUsername);
             System.out.println("Email: " + storedEmail);
             System.out.println("Password: " + storedPassword);
             System.out.println("Confirm Password: " + confirmPassword);

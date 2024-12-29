@@ -3,6 +3,7 @@ package org.javawavers.studybuddy;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -14,6 +15,14 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class Popupdiathesimotita extends Application {
+
+    private List<String> notStartedYet;
+    private List<String> completed;
+
+    public void setTaskLists(List<String> notStartedYet, List<String> completed) {
+        this.notStartedYet = notStartedYet;
+        this.completed = completed;
+    }
     
     public static boolean isFinishedChecked = false;
     private String taskDescription = "κενο";
@@ -117,9 +126,18 @@ public class Popupdiathesimotita extends Application {
         okButton.setPrefSize(70, 25);
         root.getChildren().add(okButton);
 
-        okButton.setOnAction(event ->  {
-//την στιγμη που πατιετε το κουμπι οκ αποθηκευετε στην μεταβλητη isFinishedChecked αν εκεινη την στιγμη ειχε επιλεχθει το finish box η οχι
+        okButton.setOnAction(event -> {
+            //οταν ο χρηστης επιλεγει το οκ ελενγουμε αν το finished ειναι επιλεγμενο
             isFinishedChecked = finishedCheckBox.isSelected();
+            
+            //αν ειναι βαζουμε το συγκεκριμενο task στην λιστα complete και το αφαιρουμε απο την λιστα notstartedyet
+            if (isFinishedChecked) {
+                if (notStartedYet != null && notStartedYet.contains(taskDescription)) {
+                    notStartedYet.remove(taskDescription);
+                    completed.add(taskDescription);
+                }
+            }
+
             primaryStage.close();
         });
 
