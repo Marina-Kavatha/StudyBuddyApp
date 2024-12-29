@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
-public class MainTest {
+public class MainTestAlgorithm {
     public static void main(String[] args) {
         // Create subjects
         Subject Maths = new Subject("Maths", 5, null, null);
