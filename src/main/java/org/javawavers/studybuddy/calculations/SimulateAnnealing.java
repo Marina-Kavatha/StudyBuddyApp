@@ -13,7 +13,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
+import org.javawavers.studybuddy.availability.*;
 public class SimulateAnnealing {
     /*
      * The 12 rows represent the maximum tasks that can be assigned to a day,
