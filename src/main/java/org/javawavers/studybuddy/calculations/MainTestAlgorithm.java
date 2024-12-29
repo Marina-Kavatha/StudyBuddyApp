@@ -1,5 +1,7 @@
 package org.javawavers.studybuddy.calculations;
 
+import org.javawavers.studybuddy.availability.Availability;
+
 import java.time.LocalDate;
 
 public class MainTestAlgorithm {
