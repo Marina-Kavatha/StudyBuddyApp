@@ -29,9 +29,12 @@ test:
   stage: test
   image: maven:3.8.4-openjdk-11
   script:
-    - mvn test
+    - mvn clean test
   artifacts:
     when: always
+    paths:
+      - target/site/jacoco/index.html
+      - target/jacoco-coverage-report.xml
     reports:
       junit: target/test-classes/*.xml
   rules:

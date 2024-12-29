@@ -1,6 +1,6 @@
 package org.javawavers.studybuddy;
 
-public class gitlabtest {
+public class GitLabTes {
     public void print() {
         System.out.println("Hello Gitlab!");
     }
