@@ -45,7 +45,13 @@ public class Assignment {
         this.description = description;
         this.completeddDate = completeDate;
     }
-
+    // κατασκευαστής μόνο για την ημερομηνία του deadline και τις ώρες που
+    // απαιτούνται για την υλοποιηση
+    public Assignment(String title, LocalDate deadline, int estimateHours) {
+        this.title = title;
+        this.deadline = deadline;
+        this.estimateHours = estimateHours;
+    }
     LocalDate today = LocalDate.now();
 
     public long getRemainingDays(LocalDate today, LocalDate deadline) { // μεθοδος υπολογισμου ποσες μερες μενουν ακομα
