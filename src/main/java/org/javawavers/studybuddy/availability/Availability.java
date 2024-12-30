@@ -1,3 +1,4 @@
+package org.javawavers.studybuddy.availability;
 import java.time.LocalDate;
 import java.time.format.TextStyle;
 import java.util.LinkedList;
