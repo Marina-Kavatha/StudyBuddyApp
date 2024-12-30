@@ -30,6 +30,7 @@ public class Repetition {
         int[] fixedIntervals = { 1, 3, 7, 14, 28 }; // Fixed intervals in days
         for (int f : fixedIntervals) {
             repetitionDate = studyDate.plusDays(f);
+            System.out.println(examDate);
             if (repetitionDate.isBefore(examDate)) {
                 repetitions.add(new RepetitionTask(subject, repetitionDate));
             }

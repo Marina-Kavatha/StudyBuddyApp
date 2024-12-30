@@ -102,7 +102,7 @@ public class SimulateAnnealing {
         // The column size of the table is determined by the last examination date
         colsize = ExamDates.lastExIsDue(exams);
 
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 1; i++) {
 
             double valresultscoring = 0.0;
 
