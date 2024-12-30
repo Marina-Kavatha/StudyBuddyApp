@@ -46,9 +46,6 @@ public class Repetition {
                 break; // Stop if the date exceeds the exam date
             }
         }
-        for (RepetitionTask r : repetitions) {
-            System.out.println(r.getSubject() + r.getDate());
-        }
         return assRepetitions(repetitions, tasks, subject);
     }
 
@@ -69,11 +66,18 @@ public class Repetition {
                 for (int i = 0; i < 12; i++) { // Iterate through rows (max 12 tasks per day)
                     // check for an unassigned slot and if the day is available
                     if (schedule[i][daysBetween] == 0 && Availability.checkAvailability(daysBetween)) {
-                        // Add a new repetition task
-                        tasks.add(new Task(subject, 2)); // 2 represents a repetition task
-                        // Assign the task index to the schedule
-                        schedule[i][daysBetween] = tasks.size() - 1;
-                        break; // Exit loop after assigning the task
+                        /*
+                         * Each task of type 1 and 3 takes 2 hours, while each task of type 2 takes 20
+                         * minutes
+                         */
+                        if (SimulateAnnealing.getRemainingHours() > 1.0 / 3.0) {
+                            // Add a new repetition task
+                            tasks.add(new Task(subject, 2)); // 2 represents a repetition task
+                            // Assign the task index to the schedule
+                            schedule[i][daysBetween] = tasks.size() - 1;
+                            break; // Exit loop after assigning the task
+                        }
+
                     }
                 }
             }
