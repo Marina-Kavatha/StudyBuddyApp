@@ -29,7 +29,13 @@ import java.time.temporal.ChronoUnit;
         }
         
 
-
+// κατασκευαστής μόνο για την ημερομηνία του deadline και τις ώρες που
+    // απαιτούνται για την υλοποιηση
+    public Assignment(String title, LocalDate deadline, int estimateHours) {
+        this.title = title;
+        this.deadline = deadline;
+        this.estimateHours = estimateHours;
+    }
         
         public long getRemainingDays( LocalDate deadline) { //μεθοδος υπολογισμου ποσες μερες μενουν ακομα για την ληξη της προθεσμιας
             LocalDate today = LocalDate.now();
