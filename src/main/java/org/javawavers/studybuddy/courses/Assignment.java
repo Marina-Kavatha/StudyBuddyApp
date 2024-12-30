@@ -29,7 +29,13 @@ import java.util.ArrayList;
             this.completeddDate = completeDate;
         }
         
-
+// κατασκευαστής μόνο για την ημερομηνία του deadline και τις ώρες που
+    // απαιτούνται για την υλοποιηση
+    public Assignment(String title, LocalDate deadline, int estimateHours) {
+        this.title = title;
+        this.deadline = deadline;
+        this.estimateHours = estimateHours;
+    }
 
         LocalDate today = LocalDate.now();
         
