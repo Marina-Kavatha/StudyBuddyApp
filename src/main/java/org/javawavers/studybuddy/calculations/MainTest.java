@@ -1,17 +1,17 @@
 package org.javawavers.studybuddy.calculations;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-
 
 public class MainTest {
     public static void main(String[] args) {
         // Create subjects
         Subject Maths = new Subject("Maths", 5, null, null);
-        Exam e1 = new Exam(LocalDate.of(2025, 01, 04), 300);
+        Exam e1 = new Exam(LocalDate.of(2025, 01, 24), 400);
         Maths.addExam(e1);
+        Assignment a1 = new Assignment("Ass1", LocalDate.of(2025, 01, 24), 8);
+        Maths.addAssignment(a1);
         Subject History = new Subject("History", 4, null, null);
-        Exam e2 = new Exam(LocalDate.of(2025, 01, 06), 100);
+        Exam e2 = new Exam(LocalDate.of(2025, 01, 26), 300);
         History.addExam(e2);
         ArrayList<Subject> subs = new ArrayList<>();
         subs.add(Maths);
@@ -25,7 +25,7 @@ public class MainTest {
         Availability.setAvailability(6, 6); // Saturday: 6 available hours
         Availability.setAvailability(7, 6); // Sunday: 6 available hour
         // create non Availability
-        Availability.setNonAvailability(LocalDate.of(2024, 12, 31));
+        Availability.setNonAvailability(LocalDate.of(2025, 01, 10));
 
         Availability.setNonAvailability(LocalDate.of(2025, 01, 02));
 
@@ -35,15 +35,6 @@ public class MainTest {
             sAnnealing.addSubject(s);
 
         }
-
-        System.out.println(e1.getExamDate());
-        System.out.println(e2.getExamDate());
-        LocalDate today = LocalDate.now();
-
-        long daysBetween1 = ChronoUnit.DAYS.between(today, e1.getExamDate());
-        System.out.println(" Days up to Maths exam" + daysBetween1);
-        long daysBetween2 = ChronoUnit.DAYS.between(today, e2.getExamDate());
-        System.out.println(" Days up to History exam" + daysBetween2);
 
         SimulateAnnealing.SchedulResult();
     }
