@@ -3,7 +3,6 @@ import java.time.format.TextStyle;
 import java.util.LinkedList;
 import java.util.Locale;
 
-import org.javawavers.studybuddy.availability.*;
 
 public class Availability {
     /*
