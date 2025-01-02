@@ -89,8 +89,8 @@ public class SimulateAnnealing {
          * each time the method is called in order to produce the best result
          * the best scoring is set as zero and the list with the best distribution,
          * shuffles an array so that the order of the table elements
-         * differents from the one that is given
-         * The procidure is done 50 times in order to produce 10 possible results
+         * different from the one that is given
+         * The procedure is done 50 times in order to produce 10 possible results
          * Then each list gets a score. The list with the higher score is set as the
          * besttask
          */
@@ -149,7 +149,7 @@ public class SimulateAnnealing {
     private static double remainingHours;
 
     /*
-     * Methods in order for other classes to have acess to the
+     * Methods in order for other classes to have access to the
      * remaining hours for a day
      */
     public static double getRemainingHours() {
@@ -163,7 +163,7 @@ public class SimulateAnnealing {
     public static int[][] assignTask(List<Task> tasks) {
         Collections.shuffle(tasks);
         /*
-         * The table valSchedule stors the index of the task Array list, after the
+         * The table valSchedule stores the index of the task Array list, after the
          * tasks have been distributed into the available hours
          */
         if (colsize == 0) {
@@ -211,7 +211,7 @@ public class SimulateAnnealing {
                     if (remainingHours >= 2.0) { // each task requires 2 hours
                         /*
                          * check if the exam date of the subject's task that we want to
-                         * assigne to a day has passed
+                         * assign to a day has passed
                          */
                         boolean flagEx = false;
 
